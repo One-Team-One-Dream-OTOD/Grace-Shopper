@@ -2,6 +2,7 @@
 Andrew O'Grady
 Max Fedorenko
 Tony Wong
+Jared Schwantz
 
 # Boilermaker
 
