@@ -4,6 +4,7 @@ const {Order} = require('../db/models/')
 const {User} = require('../db/models/')
 module.exports = router
 
+// GET: /api/order/
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
@@ -23,18 +24,25 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//POST: api/order/
-//ADD TO CART
+//POST: /api/order/
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const addToCart = await Order.findOrCreate({
+      await Order.create({
         userId: req.user.id,
         bookId: req.body.id,
         quantity: req.body.quantity || 1,
         price: req.body.price
       })
-      res.json(addToCart)
+
+      const newAddition = await Order.findOne({
+        include: [Book, User],
+        where: {
+          userId: req.user.id,
+          bookId: req.body.id
+        }
+      })
+      res.json(newAddition)
     } else if (req.session.cart) {
       req.session.cart.push(req.body)
       res.json(req.session.cart)
@@ -72,7 +80,7 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-//PUT: api/order/checkout
+//PUT: /api/order/checkout
 router.put('/checkout', async (req, res, next) => {
   try {
     if (req.user) {
