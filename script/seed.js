@@ -60,7 +60,7 @@ async function seed() {
       price: 10.99,
       SKU: 123,
       authorId: 1,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: "Harry Potter and the Sorcerer's Stone",
@@ -71,7 +71,7 @@ async function seed() {
       price: 9.89,
       SKU: 150,
       authorId: 2,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'The Lord of the Rings: 50th Anniversary',
@@ -82,7 +82,7 @@ async function seed() {
       price: 14.99,
       SKU: 350,
       authorId: 3,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'The Great Gatsby',
@@ -93,7 +93,7 @@ async function seed() {
       price: 12.99,
       SKU: 200,
       authorId: 4,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'The Hunger Games',
@@ -104,7 +104,7 @@ async function seed() {
       price: 10.7,
       SKU: 270,
       authorId: 5,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'The Lion, the Witch and the Wardrobe',
@@ -116,7 +116,7 @@ async function seed() {
       price: 14.59,
       SKU: 370,
       authorId: 6,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'Romeo and Juliet',
@@ -128,7 +128,7 @@ async function seed() {
       price: 6.29,
       SKU: 170,
       authorId: 7,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'The Secret Garden',
@@ -140,7 +140,7 @@ async function seed() {
       price: 10.81,
       SKU: 380,
       authorId: 8,
-      GenreId: 2
+      genreId: 2
     }),
     Book.create({
       name: 'Python Programming: An Introduction to Computer Science',
@@ -152,7 +152,7 @@ async function seed() {
       price: 45.0,
       SKU: 380,
       authorId: 10,
-      GenreId: 1
+      genreId: 1
     }),
     Book.create({
       name: 'Automation and Robotics',
@@ -164,7 +164,7 @@ async function seed() {
       price: 25.0,
       SKU: 300,
       authorId: 9,
-      GenreId: 1
+      genreId: 1
     }),
     Book.create({
       name: 'Object Oriented Programming using Java',
@@ -176,7 +176,7 @@ async function seed() {
       price: 40.0,
       SKU: 390,
       authorId: 12,
-      GenreId: 1
+      genreId: 1
     }),
     Book.create({
       name: 'Database Design and Implementation',
@@ -188,7 +188,7 @@ async function seed() {
       price: 23.0,
       SKU: 290,
       authorId: 13,
-      GenreId: 1
+      genreId: 1
     }),
     Book.create({
       name: 'Understanding Computer Simulation',
@@ -200,7 +200,7 @@ async function seed() {
       price: 33.0,
       SKU: 290,
       authorId: 11,
-      GenreId: 1
+      genreId: 1
     }),
     Book.create({
       name: 'Strategy, Marketing Plans and Small Organisations',
@@ -212,7 +212,7 @@ async function seed() {
       price: 20.0,
       SKU: 290,
       authorId: 14,
-      GenreId: 3
+      genreId: 3
     }),
     Book.create({
       name: 'Essentials of Marketing Research',
@@ -224,7 +224,7 @@ async function seed() {
       price: 40.0,
       SKU: 270,
       authorId: 15,
-      GenreId: 3
+      genreId: 3
     }),
     Book.create({
       name: 'English Legal System and Obligations',
@@ -236,7 +236,7 @@ async function seed() {
       price: 30.0,
       SKU: 270,
       authorId: 16,
-      GenreId: 4
+      genreId: 4
     }),
     Book.create({
       name: 'I Still Can’t Speak English',
@@ -248,7 +248,7 @@ async function seed() {
       price: 27.0,
       SKU: 270,
       authorId: 17,
-      GenreId: 4
+      genreId: 4
     }),
     Book.create({
       name: 'English for English Speakers',
@@ -260,7 +260,7 @@ async function seed() {
       price: 35.0,
       SKU: 200,
       authorId: 18,
-      GenreId: 4
+      genreId: 4
     }),
     Book.create({
       name: 'National Geographic: The Photographs',
@@ -271,7 +271,7 @@ async function seed() {
       price: 32.0,
       SKU: 200,
       authorId: 19,
-      GenreId: 5
+      genreId: 5
     }),
     Book.create({
       name: "The Filmmaker's Handbook",
@@ -283,7 +283,7 @@ async function seed() {
       price: 22.0,
       SKU: 200,
       authorId: 20,
-      GenreId: 5
+      genreId: 5
     }),
     Book.create({
       name: "The Photographer's Eye Remastered 10th Anniversary",
@@ -295,7 +295,7 @@ async function seed() {
       price: 25.0,
       SKU: 200,
       authorId: 21,
-      GenreId: 5
+      genreId: 5
     }),
     Book.create({
       name: 'The Right Way to Play Guitar',
@@ -307,7 +307,7 @@ async function seed() {
       price: 20.0,
       SKU: 200,
       authorId: 22,
-      GenreId: 6
+      genreId: 6
     }),
     Book.create({
       name: 'This is Your Brain on Music',
@@ -319,7 +319,7 @@ async function seed() {
       price: 33.0,
       SKU: 200,
       authorId: 22,
-      GenreId: 6
+      genreId: 6
     }),
     Book.create({
       name: 'Playing Keyboard Made Easy Volume',
@@ -331,7 +331,7 @@ async function seed() {
       price: 17.0,
       SKU: 200,
       authorId: 23,
-      GenreId: 6
+      genreId: 6
     })
   ])
 
