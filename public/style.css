@@ -8,7 +8,15 @@ body {
   margin: 0;
 }
 
+a.nav {
+  color: rgb(221, 215, 215);
+  text-decoration: none;
+  text-shadow: 2px 2px 2px #1b1b1b;
+  font-size: 20px;
+}
+
 a {
+  color: rgb(12, 11, 11);
   text-decoration: none;
 }
 
@@ -29,6 +37,10 @@ nav {
 form div {
   margin: 1em;
   display: inline-block;
+}
+h3 {
+  margin-left: 10px;
+  font-size: 25px;
 }
 
 .navbar {
@@ -67,4 +79,13 @@ form div {
   display: flex;
   justify-content: space-around;
   width: 70%;
+}
+
+.logo {
+  height: 80%;
+}
+
+.hello {
+  display: flex;
+  justify-content: center;
 }
