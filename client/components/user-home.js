@@ -11,7 +11,9 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {email ? email : 'Guest'}</h3>
+      <div className="hello">
+        <h3>Welcome, {email ? email : 'Guest'}</h3>
+      </div>
       <AllBooks />
     </div>
   )

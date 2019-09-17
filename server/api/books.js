@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-//single book
+// single book
 router.get('/:id', async (req, res, next) => {
   try {
     const book = await Book.findAll({
