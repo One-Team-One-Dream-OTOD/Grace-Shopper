@@ -9,11 +9,11 @@ const Author = require('./author')
  *
  *    BlogPost.belongsTo(User)
  */
-Author.belongsTo(Book)
-Book.hasOne(Author)
+Book.belongsTo(Author)
+Author.hasMany(Book)
 
-Genre.belongsTo(Book)
-Book.hasOne(Genre)
+Book.belongsTo(Genre)
+Genre.hasMany(Book)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
