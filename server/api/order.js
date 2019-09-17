@@ -10,10 +10,13 @@ router.get('/', async (req, res, next) => {
       const order = await Order.findAll({
         include: [Book, User],
         where: {
-          userId: req.user.id
+          userId: req.user.id,
+          isPurchased: false
         }
       })
       res.json(order)
+    } else {
+      res.json(req.session.cart)
     }
   } catch (error) {
     next(error)
@@ -21,16 +24,48 @@ router.get('/', async (req, res, next) => {
 })
 
 //POST: api/order/
+//ADD TO CART
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const addToCart = await Order.create({
+      const addToCart = await Order.findOrCreate({
         userId: req.user.id,
         bookId: req.body.id,
         quantity: req.body.quantity || 1,
         price: req.body.price
       })
       res.json(addToCart)
+    } else if (req.session.cart) {
+      req.session.cart.push(req.body)
+      res.json(req.session.cart)
+    } else {
+      req.session.cart = [req.body]
+      res.json(req.session.cart)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//PUT: api/order/
+//EDIT CART
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const editCart = await Order.update(req.body, {
+        userId: req.user.id,
+        bookId: req.body.id
+      })
+      res.json(editCart)
+    } else if (
+      req.session.cart &&
+      req.session.cart.find(prod => prod.id === req.body.id)
+    ) {
+      req.session.cart = req.session.cart.map()
+      res.json(req.session.cart)
+    } else {
+      req.session.cart = [req.body]
+      res.json(req.session.cart)
     }
   } catch (error) {
     next(error)
