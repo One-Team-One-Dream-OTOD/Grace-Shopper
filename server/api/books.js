@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-//single book
+// single book
 router.get('/:id', async (req, res, next) => {
   try {
     const book = await Book.findAll({
@@ -26,3 +26,16 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     console.log(req.params.id)
+//     const book = await Book.findById(req.params.id, {
+//       include: [{model: Author}, {model: Genre}]
+//     })
+//     if (!book) return res.sendStatus(404)
+//     res.json(book)
+//   } catch (err) {
+//     next(err)
+//   }
+// })

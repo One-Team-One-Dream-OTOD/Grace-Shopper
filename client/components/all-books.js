@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getBooks} from '../store/book'
 
@@ -9,13 +10,12 @@ class AllBooks extends Component {
 
   render() {
     const books = this.props.books
-    console.log(books)
     return (
       <React.Fragment>
-        <div className="AllProducts">
+        <div className="allProducts">
           {books.map(book => (
             <div key={book.id}>
-              <div>{book.name}</div>
+              <Link to={`/books/${book.id}`}>{book.name}</Link>
               <img src={book.imageUrl} />
               <div>${book.price}</div>
             </div>
