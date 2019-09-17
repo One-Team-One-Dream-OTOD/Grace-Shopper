@@ -29,7 +29,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
       <div>
-        <Link to="/home">Cart PlaceHolder</Link>
+        <Link to="/cart">Cart PlaceHolder</Link>
       </div>
     </nav>
   </div>
