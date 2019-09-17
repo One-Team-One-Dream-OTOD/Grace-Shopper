@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  width: 100%;
 }
 
 a {
@@ -18,4 +19,33 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background-color: rgb(132, 134, 136);
+  margin: 0;
+}
+
+.allProducts {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.book_img {
+  height: 80%;
+  width: 100%;
+}
+
+.single_book {
+  height: 550px;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
