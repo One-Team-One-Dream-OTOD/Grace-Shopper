@@ -57,11 +57,18 @@ const createApp = () => {
       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
       store: sessionStore,
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
+      maxAge: 5000
     })
   )
   app.use(passport.initialize())
   app.use(passport.session())
+
+  app.use((req, res, next) => {
+    if (!req.session.counter) req.session.counter = 0
+    console.log('counter', ++req.session.counter) // increment THEN log
+    next() // needed to continue through express middleware
+  })
 
   // auth and api routes
   app.use('/auth', require('./auth'))
