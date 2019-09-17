@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getBooks} from '../store/book'
+import {addToCart} from '../store/order'
 
 class AllBooks extends Component {
   componentDidMount() {
@@ -18,6 +19,9 @@ class AllBooks extends Component {
               <Link to={`/books/${book.id}`}>{book.name}</Link>
               <img src={book.imageUrl} className="book_img" />
               <div>${book.price}</div>
+              <button onClick={() => this.props.addToCart(book)}>
+                ADD TO CART
+              </button>
             </div>
           ))}
         </div>
@@ -34,7 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBooks: () => dispatch(getBooks())
+    getBooks: () => dispatch(getBooks()),
+    addToCart: book => dispatch(addToCart(book))
   }
 }
 

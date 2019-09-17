@@ -7,7 +7,17 @@ const Order = db.define('order', {
   },
   isPurchased: {
     type: Sequelize.BOOLEAN,
-    default: false
+    defaultValue: false
+  },
+  orderNumber: {
+    type: Sequelize.INTEGER
+  },
+  price: {
+    type: Sequelize.FLOAT
+  },
+  orderDate: {
+    type: Sequelize.DATE,
+    defaultValue: null
   }
 })
 
