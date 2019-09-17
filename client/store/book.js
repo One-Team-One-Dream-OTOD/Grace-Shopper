@@ -6,7 +6,7 @@ const GET_SINGLE_BOOK = 'GET_SINGLE_BOOK'
 
 // Action Creators
 const getAllBooks = books => ({type: GET_ALL_BOOKS, books})
-const getSingleBook = book => ({tpye: GET_SINGLE_BOOK, book})
+const getSingleBook = book => ({type: GET_SINGLE_BOOK, book})
 
 // Thunk Creators
 export const getBooks = () => async dispatch => {
@@ -18,9 +18,9 @@ export const getBooks = () => async dispatch => {
   }
 }
 
-export const getBook = bookId => async dispatch => {
+export const getBook = id => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/books/${bookId}`)
+    const {data} = await axios.get(`/api/books/${id}`)
     dispatch(getSingleBook(data))
   } catch (err) {
     console.error(err)
@@ -30,7 +30,7 @@ export const getBook = bookId => async dispatch => {
 // Initial State
 const deafaultBook = {
   books: [],
-  selectedBook: {}
+  selectedBook: [{}]
 }
 
 // Reducer
@@ -39,7 +39,7 @@ export default function(state = deafaultBook, action) {
     case GET_ALL_BOOKS:
       return {...state, books: action.books}
     case GET_SINGLE_BOOK:
-      return action.book
+      return {...state, selectedBook: action.book}
     default:
       return state
   }
