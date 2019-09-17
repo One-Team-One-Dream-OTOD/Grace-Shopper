@@ -25,15 +25,21 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      let addToCart = await Order.create({
+      await Order.create({
         userId: req.user.id,
         bookId: req.body.id,
         quantity: req.body.quantity || 1,
         price: req.body.price
       })
 
-      //   const newAddition = await
-      res.json(addToCart)
+      const newAddition = await Order.findOne({
+        include: [Book, User],
+        where: {
+          userId: req.user.id,
+          bookId: req.body.id
+        }
+      })
+      res.json(newAddition)
     }
   } catch (error) {
     next(error)
