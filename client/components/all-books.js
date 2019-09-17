@@ -12,11 +12,11 @@ class AllBooks extends Component {
     console.log(books)
     return (
       <React.Fragment>
-        <div className="AllProducts">
+        <div className="allProducts">
           {books.map(book => (
-            <div key={book.id}>
+            <div key={book.id} className="single_book">
               <div>{book.name}</div>
-              <img src={book.imageUrl} />
+              <img src={book.imageUrl} className="book_img" />
               <div>${book.price}</div>
             </div>
           ))}
