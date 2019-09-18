@@ -28,13 +28,13 @@ export const getBook = id => async dispatch => {
 }
 
 // Initial State
-const deafaultBook = {
+const defaultBook = {
   books: [],
   selectedBook: [{}]
 }
 
 // Reducer
-export default function(state = deafaultBook, action) {
+export default function(state = defaultBook, action) {
   switch (action.type) {
     case GET_ALL_BOOKS:
       return {...state, books: action.books}
