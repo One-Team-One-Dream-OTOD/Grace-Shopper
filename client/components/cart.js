@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getCart} from '../store/order'
 import DisplayCart from '../components/display-cart'
+import {Link} from 'react-router-dom'
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -15,6 +16,13 @@ class Cart extends React.Component {
       <div className="cart">
         <div className="hello">
           <h1>WELCOME TO CART!</h1>
+        </div>
+        <div>
+          <Link to="/checkout">
+            <button type="button" className="button-checkout">
+              Checkout!
+            </button>
+          </Link>
         </div>
         {this.props.cart.length < 1 ? (
           <div>NO ITEMS IN CART</div>
