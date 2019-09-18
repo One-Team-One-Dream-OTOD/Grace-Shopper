@@ -13,16 +13,18 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "rainforest-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: rainforest-grace-shopper
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: hAJ2L+9qL2lQaN0dJ1CRsuIAqQkzJTV5ps6UD9FUAjy40IdDt2ujhCINxh+kCOXXb1vXfNQ8Ou3qtQVuMhIz6f9bf3T3WceYaNE4I2N/5/5P2YIaTYm9yHc148YPaJk7WT2I01z6oj7oGL0Gcx6fpQkgadnlMKBPOeDpwtpwhmP5CTfxw2q0QFp9KW4XY5Vk621ubMWg+FY3PCyY+G4H5FWzRueLimupNfWAU/UG7KSbFagl77mQOzW6kh/qa480TcSQOllqBp9Aj/M/7Z1LEbhQwMpun3ak9FebJo20Ui+UeJhJAc/dlw3fQCojlln50yJuyy+10irvrnptRK4a64LUfcFlE/NHgU3w9OWWc+wzQHbcZsxdV81zTqmHUMRNLeA+9YjgOYx+4zgbHeluwey91S9JpH0cA96rZFLedMpjdWaEKT1Ox8Jujvl/abrkcMlzlwl9BfJw8uNyqfN6HAROJMfNOzllbwf84HAf91YEvqib54eupqjSpMlvljguwDbihMIlObuRamALDZMfk+vAmiOjdO9Fle8+Ly7gMGGXJqO3r6tL1Sv0ZGcA7Z7AXVKkFKewdfDeUAc//6+Hsp4qISahrh7oPOGL2q8n53Li6tCXG6i/h0OYDTE720daYvPC9EMKY/Qxi22YTS0qvBDQ86tJRDJcTtx5+E7JQAg=
