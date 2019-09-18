@@ -7,18 +7,14 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await OrderProduct.findAll({
-        include: [
-          Book,
-          {
-            model: Order,
-            where: {
-              userId: req.user.id,
-              isPurchased: false
-            }
-          }
-        ]
+      const order = await Order.findAll({
+        where: {
+          userId: req.user.id
+        },
+        include: [OrderProduct]
       })
+
+      console.log(order)
       res.json(order)
     } else {
       res.json(req.session.cart)
@@ -32,21 +28,27 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      await Order.create({
-        userId: req.user.id,
-        bookId: req.body.id,
-        quantity: req.body.quantity || 1,
-        price: req.body.price
+      const addCart = await Order.create({
+        userId: req.user.id
       })
 
-      const newAddition = await Order.findOne({
-        include: [Book, User],
-        where: {
-          userId: req.user.id,
-          bookId: req.body.id
-        }
-      })
-      res.json(newAddition)
+      console.log(addCart)
+
+      // const newAddition = await OrderProduct.findOne({
+      //   where: {
+      //     bookId: req.body.id
+      //   },
+      //   include: [
+      //     Book,
+      //     {
+      //       model: Order,
+      //       where: {
+      //         userId: req.user.id             }
+      //     }
+      //   ]
+      // })
+
+      res.json(addCart.userId)
     } else {
       const guestOrder = {
         userId: null,
