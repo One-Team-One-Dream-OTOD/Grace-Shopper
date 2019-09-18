@@ -1,19 +1,23 @@
 const router = require('express').Router()
-const {Book} = require('../db/models/')
-const {Order} = require('../db/models/')
-const {User} = require('../db/models/')
+const {Book, Order, User, OrderProduct} = require('../db/models/')
+
 module.exports = router
 
 // GET: /api/order/
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await Order.findAll({
-        include: [Book, User],
-        where: {
-          userId: req.user.id,
-          isPurchased: false
-        }
+      const order = await OrderProduct.findAll({
+        include: [
+          Book,
+          {
+            model: Order,
+            where: {
+              userId: req.user.id,
+              isPurchased: false
+            }
+          }
+        ]
       })
       res.json(order)
     } else {
