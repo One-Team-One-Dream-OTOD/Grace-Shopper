@@ -10,6 +10,7 @@ class AllBooks extends Component {
   }
 
   render() {
+    console.log(this.props)
     const books = this.props.books
     return (
       <React.Fragment>
