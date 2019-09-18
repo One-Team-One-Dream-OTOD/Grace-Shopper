@@ -10,12 +10,17 @@ class SingleBook extends Component {
 
   render() {
     const {name, description, imageUrl, price} = this.props.selectedBook[0]
+
     return (
       <div className="singleBook">
-        <div>{name}</div>
-        <img src={imageUrl} />
-        <div>{description}</div>
-        <div>{price}</div>
+        <div className="single_book_left">
+          <img src={imageUrl} />
+        </div>
+        <div className="single_book_right">
+          <h1>{name}</h1>
+          <p>{description}</p>
+          <h4>${price}</h4>
+        </div>
       </div>
     )
   }

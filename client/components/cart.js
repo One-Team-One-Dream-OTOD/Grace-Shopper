@@ -12,16 +12,18 @@ class Cart extends React.Component {
   render() {
     console.log(this.props.cart)
     return (
-      <div>
-        WELCOME TO CART!
+      <div className="cart">
+        <div className="hello">
+          <h1>WELCOME TO CART!</h1>
+        </div>
         {this.props.cart.length < 1 ? (
           <div>NO ITEMS IN CART</div>
         ) : (
-          <ul>
+          <div className="cart">
             {this.props.cart.map(order => (
               <DisplayCart key={order.price} order={order} />
             ))}
-          </ul>
+          </div>
         )}
       </div>
     )
