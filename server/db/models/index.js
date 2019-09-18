@@ -13,7 +13,7 @@ Genre.hasMany(Book)
 
 //One-Many User & Order
 User.hasMany(Order)
-Order.belongsTO(User)
+Order.belongsTo(User)
 
 //Many-to-Many relationship between Order and Book
 Book.belongsToMany(Order, {through: OrderProduct})
