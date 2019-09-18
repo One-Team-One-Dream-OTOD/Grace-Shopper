@@ -43,12 +43,21 @@ router.post('/', async (req, res, next) => {
         }
       })
       res.json(newAddition)
-    } else if (req.session.cart) {
-      req.session.cart.push(req.body)
-      res.json(req.session.cart)
     } else {
-      req.session.cart = [req.body]
-      res.json(req.session.cart)
+      const guestOrder = {
+        userId: null,
+        bookId: req.body.id,
+        book: req.body,
+        quantity: 1,
+        price: req.body.price,
+        isPurchased: false
+      }
+      if (req.session.cart) {
+        req.session.cart.push(guestOrder)
+      } else {
+        req.session.cart = [guestOrder]
+      }
+      res.json(guestOrder)
     }
   } catch (error) {
     next(error)
@@ -69,7 +78,8 @@ router.put('/', async (req, res, next) => {
       req.session.cart &&
       req.session.cart.find(prod => prod.id === req.body.id)
     ) {
-      req.session.cart = req.session.cart.map()
+      // Need to only update the given product
+      // req.session.cart = req.session.cart.map()
       res.json(req.session.cart)
     } else {
       req.session.cart = [req.body]
