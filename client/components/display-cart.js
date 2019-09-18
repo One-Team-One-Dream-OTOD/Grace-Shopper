@@ -16,16 +16,20 @@ const DisplayCart = props => {
           <button
             className="minus-btn"
             type="button"
-            text="+"
-            onClick={() => props.editCart(book, -1)}
-          />
+            onClick={() => props.editCart({quantity, price, id: book.id}, -1)}
+          >
+            {' '}
+            -{' '}
+          </button>
           <h6>Quantity: {quantity}</h6>
           <button
             className="plus-btn"
             type="button"
-            text="-"
-            onClick={() => props.editCart(book, 1)}
-          />
+            onClick={() => props.editCart({quantity, price, id: book.id}, 1)}
+          >
+            {' '}
+            +{' '}
+          </button>
         </span>
         <h6>Price: {price / 100}</h6>
         <div className="button">
