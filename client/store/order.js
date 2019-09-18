@@ -62,7 +62,10 @@ export default function(state = initialState, action) {
     case GET_CART:
       return {...state, cart: action.cart}
     case REMOVE_FROM_THE_CART:
-      return {...state, cart: state.cart.filter(book => book.id !== action.id)}
+      return {
+        ...state,
+        cart: state.cart.filter(order => order.id !== action.id)
+      }
     default:
       return state
   }
