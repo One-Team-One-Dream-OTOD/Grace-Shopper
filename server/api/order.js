@@ -70,7 +70,14 @@ router.post('/', async (req, res, next) => {
         isPurchased: false
       }
       if (req.session.cart) {
-        req.session.cart.push(guestOrder)
+        const item = req.session.cart.findIndex(
+          book => book.bookId === req.body.id
+        )
+        if (item === -1) {
+          req.session.cart.push(guestOrder)
+        } else {
+          req.session.cart[item].quantity = req.session.cart[item].quantity + 1
+        }
       } else {
         req.session.cart = [guestOrder]
       }
@@ -86,21 +93,28 @@ router.post('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const editCart = await Order.update(req.body, {
-        userId: req.user.id,
-        bookId: req.body.id
+      const editCart = await OrderProduct.update(req.body, {
+        where: {
+          userId: req.user.id,
+          bookId: req.body.id
+        }
       })
       res.json(editCart)
-    } else if (
-      req.session.cart &&
-      req.session.cart.find(prod => prod.id === req.body.id)
-    ) {
+    } else if (req.session.cart) {
+      const item = req.session.cart.findIndex(
+        book => book.bookId === req.body.id
+      )
+      if (item === -1) {
+        res.status(404).json()
+      } else {
+        if (req.body.quantity)
+          req.session.cart[item].quantity = req.body.quantity
+        if (req.body.price) req.session.cart[item].price = req.body.price
+      }
       // Need to only update the given product
-      // req.session.cart = req.session.cart.map()
       res.json(req.session.cart)
     } else {
-      req.session.cart = [req.body]
-      res.json(req.session.cart)
+      res.status(404).json()
     }
   } catch (error) {
     next(error)
