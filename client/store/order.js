@@ -57,7 +57,8 @@ let initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return {...state, cart: [...state.cart, action.order]}
+      //Refactored because of multiple of same items were being added to Cart Component
+      return {...state, cart: [...state.cart]}
     case GET_CART:
       return {...state, cart: action.cart}
     case REMOVE_FROM_THE_CART:
