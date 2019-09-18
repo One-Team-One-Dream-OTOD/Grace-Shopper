@@ -12,13 +12,13 @@ router.get('/', async (req, res, next) => {
           {
             model: Order,
             where: {
-              userId: req.user.id
+              userId: req.user.id,
+              isPurchased: false
             }
           },
           Book
         ]
       })
-      console.log(order)
       res.json(order)
     } else {
       res.json(req.session.cart)
@@ -39,9 +39,6 @@ router.post('/', async (req, res, next) => {
         }
       })
 
-      console.log(addCart)
-      console.log(addCart[0].id)
-
       const addToOrderProduct = await OrderProduct.findOrCreate({
         where: {
           orderId: addCart[0].id,
@@ -49,16 +46,6 @@ router.post('/', async (req, res, next) => {
           price: req.body.price
         }
       })
-
-      // await OrderProduct.update({
-      //     quantity: addToOrderProduct.quantity++
-
-      // }, {
-      //   where: {
-      //     orderId: addToOrderProduct.orderId,
-      //     bookId: addToOrderProduct.bookId
-      //   }
-      // })
 
       await addToOrderProduct[0].update({
         quantity: addToOrderProduct[0].quantity + 1
