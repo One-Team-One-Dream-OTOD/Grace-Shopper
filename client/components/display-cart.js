@@ -28,12 +28,14 @@ const DisplayCart = props => {
           />
         </span>
         <h6>Price: {price / 100}</h6>
-        <button
-          className="delete-btn"
-          onClick={() => props.deleteBook(book.id)}
-        >
-          X
-        </button>
+        <div className="button">
+          <button
+            className="delete-btn"
+            onClick={() => props.deleteBook(book.id)}
+          >
+            X
+          </button>
+        </div>
       </div>
     </div>
   )
