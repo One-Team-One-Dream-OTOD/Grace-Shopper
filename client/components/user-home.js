@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import AllBooks from './all-books'
 
 /**
  * COMPONENT
@@ -10,7 +11,10 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <div className="hello">
+        <h3>Welcome, {email ? email : 'Guest'}</h3>
+      </div>
+      <AllBooks />
     </div>
   )
 }
