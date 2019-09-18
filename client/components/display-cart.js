@@ -12,7 +12,21 @@ const DisplayCart = props => {
       </div>
       <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
-        <h6>Quantity: {quantity}</h6>
+        <span>
+          <button
+            className="minus-btn"
+            type="button"
+            text="+"
+            onClick={() => props.editCart(book, -1)}
+          />
+          <h6>Quantity: {quantity}</h6>
+          <button
+            className="plus-btn"
+            type="button"
+            text="-"
+            onClick={() => props.editCart(book, 1)}
+          />
+        </span>
         <h6>Price: {price / 100}</h6>
         <button
           className="delete-btn"

@@ -43,9 +43,16 @@ export const getCart = () => {
   }
 }
 
-export const editCart = edited => {
-  return async dispatch => {
+export const editCart = (edited, change = 0) => {
+  return async (dispatch, getState) => {
     try {
+      const {cart} = getState()
+      console.log(cart)
+      let price = cart.find(order => order.id === edited.id).price
+
+      edited.quantity = edited.quantity + change
+      edited.price = edited.quantity * price
+
       const {data} = await axios.put('/api/order/', edited)
       dispatch(editedCart(data))
     } catch (error) {
