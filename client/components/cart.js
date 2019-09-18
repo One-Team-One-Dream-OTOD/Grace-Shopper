@@ -12,8 +12,10 @@ class Cart extends React.Component {
   render() {
     let cartTotal = 0.0
     return (
-      <div>
-        WELCOME TO CART!
+      <div className="cart">
+        <div className="hello">
+          <h1>WELCOME TO CART!</h1>
+        </div>
         {this.props.cart.length < 1 ? (
           <div>NO ITEMS IN CART</div>
         ) : (
@@ -26,6 +28,7 @@ class Cart extends React.Component {
             </ul>
             <div className="cart-total">Total: {cartTotal}</div>
           </React.Fragment>
+
         )}
       </div>
     )
