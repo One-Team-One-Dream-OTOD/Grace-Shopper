@@ -5,11 +5,11 @@ const DisplayCart = props => {
   const quantity = props.order.quantity
   const price = props.order.price
   return (
-    <li>
+    <li className="cart-full-item">
       <div className="cart-image">
         <img src={book.imageUrl} />
       </div>
-      <div className="cart-item">
+      <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
         <h6>Quantity: {quantity}</h6>
         <h6>Price: {price}</h6>
