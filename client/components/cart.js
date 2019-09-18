@@ -10,7 +10,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log(this.props.cart)
+    let cartTotal = 0.0
     return (
       <div className="cart">
         <div className="hello">
@@ -19,11 +19,15 @@ class Cart extends React.Component {
         {this.props.cart.length < 1 ? (
           <div>NO ITEMS IN CART</div>
         ) : (
-          <div className="cart">
-            {this.props.cart.map(order => (
-              <DisplayCart key={order.price} order={order} />
-            ))}
-          </div>
+          <React.Fragment>
+            <ul className="cart-full-list">
+              {this.props.cart.map(order => {
+                cartTotal += order.price
+                return <DisplayCart key={order.price} order={order} />
+              })}
+            </ul>
+            <div className="cart-total">Total: {cartTotal}</div>
+          </React.Fragment>
         )}
       </div>
     )
