@@ -13,13 +13,15 @@ const DisplayCart = props => {
       <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
         <h6>Quantity: {quantity}</h6>
-        <h6>Price: {price / 100}</h6>
-        <button
-          className="delete-btn"
-          onClick={() => props.deleteBook(book.id)}
-        >
-          X
-        </button>
+        <div className="button">
+          <h6>Price: {price / 100}</h6>
+          <button
+            className="delete-btn"
+            onClick={() => props.deleteBook(book.id)}
+          >
+            X
+          </button>
+        </div>
       </div>
     </div>
   )

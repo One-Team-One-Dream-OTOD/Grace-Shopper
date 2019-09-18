@@ -62,9 +62,10 @@ export default function(state = initialState, action) {
     case GET_CART:
       return {...state, cart: action.cart}
     case REMOVE_FROM_THE_CART:
+      console.log(state)
       return {
         ...state,
-        cart: state.cart.filter(order => order.id !== action.id)
+        cart: state.cart.filter(book => book.bookId !== action.id)
       }
     default:
       return state
