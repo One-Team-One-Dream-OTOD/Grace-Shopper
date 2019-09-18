@@ -12,7 +12,7 @@ const DisplayCart = props => {
       <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
         <h6>Quantity: {quantity}</h6>
-        <h6>Price: {price}</h6>
+        <h6>Price: {price / 100}</h6>
       </div>
     </div>
   )

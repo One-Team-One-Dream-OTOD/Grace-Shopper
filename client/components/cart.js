@@ -26,9 +26,8 @@ class Cart extends React.Component {
                 return <DisplayCart key={order.price} order={order} />
               })}
             </ul>
-            <div className="cart-total">Total: {cartTotal}</div>
+            <div className="cart-total">Total: {cartTotal / 100}</div>
           </React.Fragment>
-
         )}
       </div>
     )

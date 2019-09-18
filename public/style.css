@@ -149,9 +149,14 @@ button {
   justify-content: center;
 }
 
-.cart {
+.cart-full-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   height: 70%;
+}
+
+.cart-total {
+  margin-left: 20px;
+  font-size: 20px;
 }
