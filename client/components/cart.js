@@ -18,9 +18,11 @@ class Cart extends React.Component {
           <div>NO ITEMS IN CART</div>
         ) : (
           <ul>
-            {this.props.cart.map(order => (
-              <DisplayCart key={order.price} order={order} />
-            ))}
+            {this.props.cart.map(order => {
+              if (!order.isPurchased) {
+                return <DisplayCart key={order.price} order={order} />
+              }
+            })}
           </ul>
         )}
       </div>

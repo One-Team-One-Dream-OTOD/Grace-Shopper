@@ -10,9 +10,9 @@ const DisplayCart = props => {
         <img src={book.imageUrl} />
       </div>
       <div className="cart-item">
-        <h6>{book.name}</h6>
-        <h6>{quantity}</h6>
-        <h6>{price}</h6>
+        <h6>Book: {book.name}</h6>
+        <h6>Quantity: {quantity}</h6>
+        <h6>Price: {price}</h6>
       </div>
     </li>
   )
