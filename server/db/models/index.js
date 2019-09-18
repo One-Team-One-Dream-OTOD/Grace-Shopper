@@ -4,6 +4,7 @@ const Genre = require('./genre')
 const Author = require('./author')
 const Order = require('./order')
 const OrderProduct = require('./order-product')
+const db = require('../db')
 
 Book.belongsTo(Author)
 Author.hasMany(Book)
@@ -20,8 +21,8 @@ Book.belongsToMany(Order, {through: OrderProduct})
 Order.belongsToMany(Book, {through: OrderProduct})
 
 //Resolves EagerLoading Error
-OrderProduct.belongsTo(Book)
 OrderProduct.belongsTo(Order)
+OrderProduct.belongsTo(Book)
 
 module.exports = {
   User,

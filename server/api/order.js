@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Book, Order, User, OrderProduct} = require('../db/models/')
+const {Book, Order, OrderProduct} = require('../db/models/')
 
 module.exports = router
 
@@ -7,13 +7,17 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await Order.findAll({
-        where: {
-          userId: req.user.id
-        },
-        include: [OrderProduct]
+      const order = await OrderProduct.findAll({
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id
+            }
+          },
+          Book
+        ]
       })
-
       console.log(order)
       res.json(order)
     } else {
@@ -28,27 +32,47 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const addCart = await Order.create({
-        userId: req.user.id
+      const addCart = await Order.findOrCreate({
+        where: {
+          userId: req.user.id,
+          isPurchased: false
+        }
       })
 
       console.log(addCart)
+      console.log(addCart[0].id)
 
-      // const newAddition = await OrderProduct.findOne({
+      const addToOrderProduct = await OrderProduct.findOrCreate({
+        where: {
+          orderId: addCart[0].id,
+          bookId: req.body.id,
+          price: req.body.price
+        }
+      })
+
+      // await OrderProduct.update({
+      //     quantity: addToOrderProduct.quantity++
+
+      // }, {
       //   where: {
-      //     bookId: req.body.id
-      //   },
-      //   include: [
-      //     Book,
-      //     {
-      //       model: Order,
-      //       where: {
-      //         userId: req.user.id             }
-      //     }
-      //   ]
+      //     orderId: addToOrderProduct.orderId,
+      //     bookId: addToOrderProduct.bookId
+      //   }
       // })
 
-      res.json(addCart.userId)
+      await addToOrderProduct[0].update({
+        quantity: addToOrderProduct[0].quantity + 1
+      })
+
+      const returnValue = await OrderProduct.findOne({
+        include: [Book],
+        where: {
+          orderId: addCart[0].id,
+          bookId: req.body.id
+        }
+      })
+
+      res.json(returnValue)
     } else {
       const guestOrder = {
         userId: null,
