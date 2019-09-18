@@ -106,3 +106,15 @@ router.put('/checkout', async (req, res, next) => {
     next(error)
   }
 })
+
+//delete /api/order/:id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.id)
+    if (!order) return res.sendStatus(404)
+    await order.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
