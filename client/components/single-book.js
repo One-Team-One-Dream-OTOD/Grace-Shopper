@@ -19,7 +19,7 @@ class SingleBook extends Component {
         <div className="single_book_right">
           <h1>{name}</h1>
           <p>{description}</p>
-          <h4>${price}</h4>
+          <h4>${price / 100}</h4>
         </div>
       </div>
     )

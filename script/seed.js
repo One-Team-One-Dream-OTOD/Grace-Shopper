@@ -57,7 +57,7 @@ async function seed() {
         'Compassionate, dramatic, and deeply moving, To Kill A Mockingbird takes readers to the roots of human behavior - to innocence and experience, kindness and cruelty, love and hatred, humor and pathos. Now with over 18 million copies in print and translated into forty languages, this regional story by a young Alabama woman claims universal appeal. Harper Lee always considered her book to be a simple love story. Today it is regarded as a masterpiece of American literature.',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51N5qVjuKAL._SX309_BO1,204,203,200_.jpg',
-      price: 10.99,
+      price: 1099,
       SKU: 123,
       authorId: 1,
       genreId: 2
@@ -68,7 +68,7 @@ async function seed() {
         "Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But everything changes when Harry is summoned to attend an infamous school for wizards, and he begins to discover some clues about his illustrious birthright. From the surprising way he is greeted by a lovable giant, to the unique curriculum and colorful faculty at his unusual school, Harry finds himself drawn deep inside a mystical world he never knew existed and closer to his own noble destiny.",
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51HSkTKlauL._SX346_BO1,204,203,200_.jpg',
-      price: 9.89,
+      price: 989,
       SKU: 150,
       authorId: 2,
       genreId: 2
@@ -79,7 +79,7 @@ async function seed() {
         'In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him. After many ages it fell by chance into the hands of the hobbit Bilbo Baggins.',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51eq24cRtRL._SX331_BO1,204,203,200_.jpg',
-      price: 14.99,
+      price: 1499,
       SKU: 350,
       authorId: 3,
       genreId: 2
@@ -90,7 +90,7 @@ async function seed() {
         'The Great Gatsby, F. Scott Fitzgerald’s third book, stands as the supreme achievement of his career. First published in 1925, this quintessential novel of the Jazz Age has been acclaimed by generations of readers. The story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted “gin was the national drink and sex the national obsession,” it is an exquisitely crafted tale of America in the 1920s.',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/41iers%2BHLSL._SX326_BO1,204,203,200_.jpg',
-      price: 12.99,
+      price: 1299,
       SKU: 200,
       authorId: 4,
       genreId: 2
@@ -101,7 +101,7 @@ async function seed() {
         'In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. Long ago the districts waged war on the Capitol and were defeated. As part of the surrender terms, each district agreed to send one boy and one girl to appear in an annual televised event called, "The Hunger Games," a fight to the death on live TV. Sixteen-year-old Katniss Everdeen, who lives alone with her mother and younger sister, regards it as a death sentence when she is forced to represent her district in the Games. The terrain, rules, and level of audience participation may change but one thing is constant: kill or be killed.',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/41ir9m8QQnL._SX332_BO1,204,203,200_.jpg',
-      price: 10.7,
+      price: 1070,
       SKU: 270,
       authorId: 5,
       genreId: 2
@@ -113,7 +113,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51erHMLhIzL._SX334_BO1,204,203,200_.jpg',
-      price: 14.59,
+      price: 1459,
       SKU: 370,
       authorId: 6,
       genreId: 2
@@ -125,7 +125,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51dZbSxZ8YL._SX331_BO1,204,203,200_.jpg',
-      price: 6.29,
+      price: 629,
       SKU: 170,
       authorId: 7,
       genreId: 2
@@ -137,7 +137,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/518pCYt9iGL._SX308_BO1,204,203,200_.jpg',
-      price: 10.81,
+      price: 1081,
       SKU: 380,
       authorId: 8,
       genreId: 2
@@ -149,7 +149,7 @@ async function seed() {
 
       imageUrl:
         'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT1oPIV7wzlpvucjDHEbjC-baMxL6ZsQOnqqYMLkVqWZqs-ACE-uMYQf4GO-ca0H6jQCGfgIHBNK8v0KQg3qhlXnwldPpslS4wNr72CKblh&usqp=CAY',
-      price: 45.0,
+      price: 4500,
       SKU: 380,
       authorId: 10,
       genreId: 1
@@ -161,7 +161,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/cad3ee13-0f5e-e011-bd88-22a08ed629e5/a55e9eb4-f178-4be6-b662-a47400cad150/automation-and-robotics.jpg',
-      price: 25.0,
+      price: 2500,
       SKU: 300,
       authorId: 9,
       genreId: 1
@@ -173,7 +173,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/62d6ee13-0f5e-e011-bd88-22a08ed629e5/712b442e-8211-4858-89bb-a5930101f841/object-oriented-programming-using-java.jpg',
-      price: 40.0,
+      price: 4010,
       SKU: 390,
       authorId: 12,
       genreId: 1
@@ -185,7 +185,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/055917d6-7e80-4b84-850a-a4d000c4276a/5fd64c5d-40d7-421a-ae21-a5d900d9d963/database-design-and-implementation.jpg',
-      price: 23.0,
+      price: 2350,
       SKU: 290,
       authorId: 13,
       genreId: 1
@@ -197,7 +197,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/51d7ee13-0f5e-e011-bd88-22a08ed629e5/64e37c9d-019a-452e-980a-a55300b2adfc/understanding.jpg',
-      price: 33.0,
+      price: 3320,
       SKU: 290,
       authorId: 11,
       genreId: 1
@@ -209,7 +209,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/e6bdb304-5cce-464e-9fc4-a5e800afa2b3/5597765a-44ab-4ce0-a244-a5e900b3b3dd/strategy-marketing-plans-and-small-organisations.jpg',
-      price: 20.0,
+      price: 2050,
       SKU: 290,
       authorId: 14,
       genreId: 3
@@ -221,7 +221,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/f6d5ee13-0f5e-e011-bd88-22a08ed629e5/a55e9eb4-f178-4be6-b662-a47400cad150/marketing-research-an-introduction.jpg',
-      price: 40.0,
+      price: 4000,
       SKU: 270,
       authorId: 15,
       genreId: 3
@@ -233,7 +233,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/3faed46e-e524-4838-a2e0-a682009ce593/fd11c6b5-c27e-407f-a9d5-a69000b0993b/english-legal-system-and-obligations.jpg',
-      price: 30.0,
+      price: 3099,
       SKU: 270,
       authorId: 16,
       genreId: 4
@@ -245,7 +245,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/3bf58559-034f-4676-bb5f-a2c101015a58/df3a9c2d-4acb-425f-9a35-827e7bef417d/i-still-cant-speak-english.jpg',
-      price: 27.0,
+      price: 2780,
       SKU: 270,
       authorId: 17,
       genreId: 4
@@ -257,7 +257,7 @@ async function seed() {
 
       imageUrl:
         'https://bookboon.com/thumbnail/380/416cc622-ff87-4cc3-a4f9-a0ed00f96cfb/9a9ba4cd-1a54-4072-a426-a5d400e5c107/be-a-better-writer.jpg',
-      price: 35.0,
+      price: 3510,
       SKU: 200,
       authorId: 18,
       genreId: 4
@@ -268,7 +268,7 @@ async function seed() {
         'This stunning volume was the gift book of the year when it first published, and the images that grace its pages remain iconic. From the famous Afghan girl whose haunting green eyes stare out from the book’s cover, and her poignant story that captured the world’s interest, to award-winning photography culled from the Society’s vast archives, The Photographs offers readers an inside look at National Geographic and a sharp-eyed view of the world. The book showcases the skill and imagination of such notable Geographic photographers as David Doubilet, William Albert Allard, Sam Abell, Jim Stanfield, Jodi Cobb, Jim Brandenburg, David Alan Harvey, and many more. They share their techniques, as well as personal and colorful anecdotes about individual images and their adventures in the field—sometimes humorous, sometimes terrifying, always vividly compelling. Author Leah Bendavid-Val writes about the photographers’ achievements from technical, journalistic, and artistic perspectives.',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51hu%2BBc-GBL._SX453_BO1,204,203,200_.jpg',
-      price: 32.0,
+      price: 3280,
       SKU: 200,
       authorId: 19,
       genreId: 5
@@ -280,7 +280,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51v5GHQH5EL._SX332_BO1,204,203,200_.jpg',
-      price: 22.0,
+      price: 2200,
       SKU: 200,
       authorId: 20,
       genreId: 5
@@ -292,7 +292,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/61BPYvStOcL._SX459_BO1,204,203,200_.jpg',
-      price: 25.0,
+      price: 2550,
       SKU: 200,
       authorId: 21,
       genreId: 5
@@ -304,7 +304,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/515eAtIPjSL._SX324_BO1,204,203,200_.jpg',
-      price: 20.0,
+      price: 2040,
       SKU: 200,
       authorId: 22,
       genreId: 6
@@ -316,7 +316,7 @@ async function seed() {
 
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/41194zLhNgL._SX324_BO1,204,203,200_.jpg',
-      price: 33.0,
+      price: 3300,
       SKU: 200,
       authorId: 22,
       genreId: 6
@@ -328,7 +328,7 @@ async function seed() {
       author: '',
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51YM54x120L._SX327_BO1,204,203,200_.jpg',
-      price: 17.0,
+      price: 1700,
       SKU: 200,
       authorId: 23,
       genreId: 6

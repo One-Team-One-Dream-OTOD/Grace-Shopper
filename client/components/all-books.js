@@ -19,7 +19,7 @@ class AllBooks extends Component {
             <div key={book.id} className="single_book">
               <Link to={`/books/${book.id}`}>{book.name}</Link>
               <img src={book.imageUrl} className="book_img" />
-              <div>${book.price}</div>
+              <div>${book.price / 100}</div>
               <button onClick={() => this.props.addToCart(book)}>
                 ADD TO CART
               </button>

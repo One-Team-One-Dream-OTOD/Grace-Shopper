@@ -13,7 +13,7 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER
   },
   price: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   },
   orderDate: {
     type: Sequelize.DATE,

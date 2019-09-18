@@ -14,7 +14,7 @@ const Book = db.define('book', {
     type: Sequelize.STRING
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   SKU: {
