@@ -3,6 +3,7 @@ import axios from 'axios'
 //ACTION TYPES
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
+const CHECKOUT_CART = 'CHECKOUT_CART'
 
 //ACTION CREATOR
 const addedToCart = order => ({
@@ -15,6 +16,10 @@ const gotCart = cart => ({
   cart
 })
 
+const finishedCheckout = () => ({
+  type: CHECKOUT_CART
+})
+
 //THUNK CREATOR
 export const addToCart = book => {
   return async dispatch => {
@@ -25,10 +30,16 @@ export const addToCart = book => {
 }
 
 export const getCart = () => {
-  console.log('GOT TO CART')
   return async dispatch => {
     const {data} = await axios.get(`/api/order/`)
     dispatch(gotCart(data))
+  }
+}
+
+export const checkoutCart = () => {
+  return async dispatch => {
+    await axios.put(`/api/order/checkout`)
+    dispatch(finishedCheckout())
   }
 }
 
@@ -44,6 +55,8 @@ export default function(state = initialState, action) {
       return {...state, cart: [...state.cart]}
     case GET_CART:
       return {...state, cart: action.cart}
+    case CHECKOUT_CART:
+      return {...state}
     default:
       return state
   }

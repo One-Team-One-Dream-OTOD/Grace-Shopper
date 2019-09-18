@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {checkoutCart, getCart} from '../store/order'
+import DisplayCheckout from './display-checkout'
 
 class Checkout extends React.Component {
   constructor() {
@@ -10,7 +12,12 @@ class Checkout extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidMount() {
+    this.props.getCart()
+  }
+
   handleClick() {
+    this.props.checkoutCart()
     this.setState({hasPaid: true})
   }
 
@@ -22,6 +29,11 @@ class Checkout extends React.Component {
           <div>
             <h3>Please Review Your Order</h3>
             <hr />
+            <ul>
+              {this.props.itemsInCart.map(item => {
+                return <DisplayCheckout key={item.bookId} item={item} />
+              })}
+            </ul>
             <button type="button" onClick={this.handleClick}>
               Sumbit Order
             </button>
@@ -40,6 +52,11 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {}
+const mapDispatchToProps = dispatch => {
+  return {
+    checkoutCart: () => dispatch(checkoutCart()),
+    getCart: () => dispatch(getCart())
+  }
+}
 
-export default connect(null, null)(Checkout)
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
