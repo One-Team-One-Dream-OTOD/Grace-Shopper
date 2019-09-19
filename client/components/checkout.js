@@ -50,7 +50,9 @@ class Checkout extends React.Component {
             </div>
           </div>
         ) : (
-          <h3>Thank you for shopping with us!</h3>
+          <h3 className="checkout-thank-you">
+            Thank you for shopping with us!
+          </h3>
         )}
       </React.Fragment>
     )
