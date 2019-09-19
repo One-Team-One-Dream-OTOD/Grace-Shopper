@@ -126,7 +126,7 @@ router.put('/checkout', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const order = await Order.findOne({
-      wgere: {
+      where: {
         userId: req.user.id
       }
     })
