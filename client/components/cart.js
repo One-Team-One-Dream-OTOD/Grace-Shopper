@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getCart, deleteBook} from '../store/order'
+import {getCart, deleteBook, editCart} from '../store/order'
 import DisplayCart from '../components/display-cart'
 import {Link} from 'react-router-dom'
 
@@ -35,6 +35,7 @@ class Cart extends React.Component {
                     key={order.price}
                     order={order}
                     deleteBook={this.props.deleteBook}
+                    editCart={this.props.editCart}
                   />
                 )
               })}
@@ -56,7 +57,8 @@ const mapStateToProps = state => {
 const mapDisptachToProps = dispatch => {
   return {
     getCart: () => dispatch(getCart()),
-    deleteBook: id => dispatch(deleteBook(id))
+    deleteBook: id => dispatch(deleteBook(id)),
+    editCart: (book, change) => dispatch(editCart(book, change))
   }
 }
 

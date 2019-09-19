@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const router = require('express').Router()
 const {Book, Order, OrderProduct} = require('../db/models/')
 module.exports = router
@@ -29,8 +30,9 @@ router.get('/', async (req, res, next) => {
 
 //POST: /api/order/
 router.post('/', async (req, res, next) => {
-  try {
-    if (req.user) {
+  // handle logged in users
+  if (req.user) {
+    try {
       const addCart = await Order.findOrCreate({
         where: {
           userId: req.user.id,
@@ -59,51 +61,98 @@ router.post('/', async (req, res, next) => {
       })
 
       res.json(returnValue)
-    } else {
-      const guestOrder = {
-        userId: null,
-        bookId: req.body.id,
-        book: req.body,
-        quantity: 1,
-        price: req.body.price,
-        isPurchased: false
-      }
-      if (req.session.cart) {
+    } catch (error) {
+      next(error)
+    }
+    // now handle guest carts
+  } else {
+    const guestOrder = {
+      userId: null,
+      bookId: req.body.id,
+      book: req.body,
+      quantity: 1,
+      price: req.body.price,
+      isPurchased: false
+    }
+    // handle if the cart already has something in it
+    if (req.session.cart) {
+      // if our item doesnt exist in our cart, just add, otherwise update quantity
+      const item = req.session.cart.findIndex(
+        book => book.bookId === req.body.id
+      )
+      if (item === -1) {
         req.session.cart.push(guestOrder)
       } else {
-        req.session.cart = [guestOrder]
+        req.session.cart[item].quantity = req.session.cart[item].quantity + 1
       }
-      res.json(guestOrder)
+      // otherwise create a cart
+    } else {
+      req.session.cart = [guestOrder]
     }
-  } catch (error) {
-    next(error)
+    res.json(guestOrder)
   }
 })
 
 //PUT: api/order/
 //EDIT CART
 router.put('/', async (req, res, next) => {
-  try {
-    if (req.user) {
-      const editCart = await Order.update(req.body, {
-        userId: req.user.id,
-        bookId: req.body.id
+  // handle edit cart for users
+  if (req.user) {
+    try {
+      const editCart = await OrderProduct.update(req.body, {
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id
+            }
+          }
+        ],
+        where: {
+          bookId: req.body.id
+        }
       })
-      res.json(editCart)
-    } else if (
-      req.session.cart &&
-      req.session.cart.find(prod => prod.id === req.body.id)
-    ) {
-      // Need to only update the given product
-      // req.session.cart = req.session.cart.map()
-      res.json(req.session.cart)
-    } else {
-      req.session.cart = [req.body]
-      res.json(req.session.cart)
+
+      if (editCart[0] !== 1) {
+        res.status(404).json('Not Found')
+      }
+
+      const updatedCart = await OrderProduct.findOne({
+        where: {
+          bookId: req.body.id
+        },
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id
+            }
+          },
+          Book
+        ]
+      })
+
+      res.json(updatedCart)
+    } catch (error) {
+      next(error)
     }
-  } catch (error) {
-    next(error)
+    // Now need to handle cart for guests
+  } else if (req.session.cart) {
+    const item = req.session.cart.findIndex(book => book.bookId === req.body.id)
+    // only should make updates if the item is actually in our cart
+    if (item !== -1) {
+      // need to check undefined, because if its 0, doesnt evaluate like we want
+      if (req.body.quantity !== undefined) {
+        req.session.cart[item].quantity = req.body.quantity
+      }
+      if (req.body.price) {
+        req.session.cart[item].price = req.body.price
+      }
+    }
+    // Need to only update the given product
+    res.json(req.session.cart[item])
   }
+  res.status(404).json()
 })
 
 //PUT: /api/order/checkout
@@ -124,23 +173,29 @@ router.put('/checkout', async (req, res, next) => {
 
 //delete /api/order/:id
 router.delete('/:id', async (req, res, next) => {
-  try {
-    const order = await Order.findOne({
-      where: {
-        userId: req.user.id
-      }
-    })
+  if (req.user) {
+    try {
+      const order = await Order.findOne({
+        where: {
+          userId: req.user.id
+        }
+      })
 
-    const deleteBook = await OrderProduct.findOne({
-      where: {
-        bookId: req.params.id,
-        orderId: order.id
-      }
-    })
-    if (!deleteBook) return res.sendStatus(404)
-    await deleteBook.destroy()
-    res.sendStatus(204)
-  } catch (err) {
-    next(err)
+      const deleteBook = await OrderProduct.findOne({
+        where: {
+          bookId: req.params.id,
+          orderId: order.id
+        }
+      })
+      if (!deleteBook) return res.sendStatus(404)
+      await deleteBook.destroy()
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    req.session.cart = req.session.cart.filter(
+      order => order.bookId !== parseInt(req.params.id, 10)
+    )
   }
+  res.sendStatus(204)
 })
