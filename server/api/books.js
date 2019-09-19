@@ -20,7 +20,7 @@ router.get('/:id', async (req, res, next) => {
       where: {id: req.params.id},
       include: [{model: Author}, {model: Genre}]
     })
-    if (!book) return res.sendStatus(404)
+    if (book) return res.sendStatus(404)
     res.json(book)
   } catch (err) {
     next(err)

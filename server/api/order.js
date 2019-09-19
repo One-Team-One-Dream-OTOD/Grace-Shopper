@@ -19,6 +19,7 @@ router.get('/', async (req, res, next) => {
           Book
         ]
       })
+      console.log(order)
       res.json(order)
     } else {
       res.json(req.session.cart)
