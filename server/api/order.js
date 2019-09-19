@@ -1,19 +1,22 @@
 const router = require('express').Router()
-const {Book} = require('../db/models/')
-const {Order} = require('../db/models/')
-const {User} = require('../db/models/')
+const {Book, Order, OrderProduct} = require('../db/models/')
 module.exports = router
 
 // GET: /api/order/
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await Order.findAll({
-        include: [Book, User],
-        where: {
-          userId: req.user.id,
-          isPurchased: false
-        }
+      const order = await OrderProduct.findAll({
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id,
+              isPurchased: false
+            }
+          },
+          Book
+        ]
       })
       res.json(order)
     } else {
@@ -28,21 +31,34 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     if (req.user) {
-      await Order.create({
-        userId: req.user.id,
-        bookId: req.body.id,
-        quantity: req.body.quantity || 1,
-        price: req.body.price
-      })
-
-      const newAddition = await Order.findOne({
-        include: [Book, User],
+      const addCart = await Order.findOrCreate({
         where: {
           userId: req.user.id,
+          isPurchased: false
+        }
+      })
+
+      const addToOrderProduct = await OrderProduct.findOrCreate({
+        where: {
+          orderId: addCart[0].id,
+          bookId: req.body.id,
+          price: req.body.price
+        }
+      })
+
+      await addToOrderProduct[0].update({
+        quantity: addToOrderProduct[0].quantity + 1
+      })
+
+      const returnValue = await OrderProduct.findOne({
+        include: [Book],
+        where: {
+          orderId: addCart[0].id,
           bookId: req.body.id
         }
       })
-      res.json(newAddition)
+
+      res.json(returnValue)
     } else {
       const guestOrder = {
         userId: null,
@@ -94,15 +110,37 @@ router.put('/', async (req, res, next) => {
 router.put('/checkout', async (req, res, next) => {
   try {
     if (req.user) {
-      const checkout = await Order.Update({
-        isPurchased: true,
-        where: {
-          userId: req.user.id
-        }
-      })
-      res.json(checkout)
+      const usersOrder = await Order.update(
+        {isPurchased: true},
+        {where: {userId: req.user.id}}
+      )
+
+      res.json(usersOrder)
     }
   } catch (error) {
     next(error)
+  }
+})
+
+//delete /api/order/:id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      wgere: {
+        userId: req.user.id
+      }
+    })
+
+    const deleteBook = await OrderProduct.findOne({
+      where: {
+        bookId: req.params.id,
+        orderId: order.id
+      }
+    })
+    if (!deleteBook) return res.sendStatus(404)
+    await deleteBook.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
   }
 })
