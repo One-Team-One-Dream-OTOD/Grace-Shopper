@@ -13,33 +13,31 @@ const DisplayCart = props => {
       </div>
       <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
-        <span>
+        <div className="form-container cart-item-qty">
           <button
-            className="minus-btn"
+            className="quantity-btn"
             type="button"
             onClick={() => props.editCart(order, -1)}
           >
-            {' '}
-            -{' '}
+            <i className="fas fa-minus" />
           </button>
-          <h6>Quantity: {quantity}</h6>
+          <h6> Quantity: {quantity} </h6>
           <button
-            className="plus-btn"
+            className="quantity-btn"
             type="button"
             onClick={() => props.editCart(order, 1)}
           >
-            {' '}
-            +{' '}
+            <i className="fas fa-plus" />
           </button>
-        </span>
-        <h6>Price: {price / 100}</h6>
+        </div>
+        <h6>Price: {price * quantity / 100}</h6>
         <div className="button">
           <button
             type="button"
             className="delete-btn"
             onClick={() => props.deleteBook(book.id)}
           >
-            X
+            <i className="fas fa-times" />
           </button>
         </div>
       </div>
