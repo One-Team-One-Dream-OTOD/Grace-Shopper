@@ -7,6 +7,7 @@ import {addToCart} from '../store/order'
 class AllBooks extends Component {
   componentDidMount() {
     this.props.getBooks()
+    console.log(' ')
   }
 
   render() {
