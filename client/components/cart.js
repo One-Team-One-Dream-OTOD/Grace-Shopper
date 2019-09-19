@@ -29,7 +29,7 @@ class Cart extends React.Component {
           <React.Fragment>
             <ul className="cart-full-list">
               {this.props.cart.map(order => {
-                cartTotal += order.price
+                cartTotal += order.price * order.quantity
                 return (
                   <DisplayCart
                     key={order.price}

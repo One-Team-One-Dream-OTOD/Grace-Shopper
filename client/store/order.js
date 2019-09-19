@@ -36,7 +36,6 @@ const removeBook = id => ({
 export const addToCart = book => {
   return async dispatch => {
     const {data} = await axios.post(`/api/order/`, book)
-    console.log(data)
     dispatch(addedToCart(data))
   }
 }
