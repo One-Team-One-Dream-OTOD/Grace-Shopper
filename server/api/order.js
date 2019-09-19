@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Book, Order, OrderProduct} = require('../db/models/')
-
 module.exports = router
 
 // GET: /api/order/
