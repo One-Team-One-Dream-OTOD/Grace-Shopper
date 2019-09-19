@@ -161,7 +161,7 @@ router.put('/checkout', async (req, res, next) => {
   try {
     if (req.user) {
       const usersOrder = await Order.update(
-        {isPurchased: true},
+        {isPurchased: true, orderDate: Date.now()},
         {
           where: {
             userId: req.user.id,
