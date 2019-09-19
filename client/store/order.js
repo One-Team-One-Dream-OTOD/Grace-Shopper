@@ -71,10 +71,11 @@ export const editCart = (edited, change = 0) => {
     try {
       edited.quantity = edited.quantity + change
 
-      if (edited.quantity === 0) {
+      const {data} = await axios.put('/api/order/', edited)
+      console.log('edit data', data)
+      if (data.quantity === 0) {
         dispatch(deleteBook(edited.id))
       } else {
-        const {data} = await axios.put('/api/order/', edited)
         dispatch(editedCart(data))
       }
     } catch (error) {
