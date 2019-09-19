@@ -4,6 +4,7 @@ import axios from 'axios'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
 const CHECKOUT_CART = 'CHECKOUT_CART'
+const REMOVE_FROM_THE_CART = 'REMOVE_FROM_THE_CART'
 
 //ACTION CREATOR
 const addedToCart = order => ({
@@ -18,6 +19,11 @@ const gotCart = cart => ({
 
 const finishedCheckout = () => ({
   type: CHECKOUT_CART
+})
+
+const removeBook = id => ({
+  type: REMOVE_FROM_THE_CART,
+  id
 })
 
 //THUNK CREATOR
@@ -43,6 +49,17 @@ export const checkoutCart = () => {
   }
 }
 
+export const deleteBook = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/order/${id}`)
+      dispatch(removeBook(id))
+    } catch (err) {
+      console.log(`ERROR deleting book with id ${id}`, err)
+    }
+  }
+}
+
 //INITIAL STATE
 let initialState = {
   cart: []
@@ -57,6 +74,12 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
     case CHECKOUT_CART:
       return {...state}
+    case REMOVE_FROM_THE_CART:
+      console.log(state)
+      return {
+        ...state,
+        cart: state.cart.filter(book => book.bookId !== action.id)
+      }
     default:
       return state
   }

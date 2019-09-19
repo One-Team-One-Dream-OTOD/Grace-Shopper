@@ -159,3 +159,20 @@ button {
   margin-left: 20px;
   font-size: 20px;
 }
+.button {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  height: 20%;
+  align-items: flex-end;
+}
+
+.delete-btn {
+  height: 20px;
+  width: 20px;
+}
+.cart-item-details {
+  height: 130px;
+  width: 280px;
+}
