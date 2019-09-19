@@ -22,21 +22,32 @@ class Checkout extends React.Component {
   }
 
   render() {
+    let priceTotal = 0.0
+    let subTotal = 0.0
     return (
       <React.Fragment>
         <h3>Checkout Here!</h3>
         {!this.state.hasPaid ? (
-          <div>
-            <h3>Please Review Your Order</h3>
-            <hr />
-            <ul>
-              {this.props.itemsInCart.map(item => {
-                return <DisplayCheckout key={item.bookId} item={item} />
-              })}
-            </ul>
-            <button type="button" onClick={this.handleClick}>
-              Sumbit Order
-            </button>
+          <div className="checkout-row">
+            <div className="checkout-full">
+              <h3>Please Review Your Order</h3>
+              <hr />
+              <ul className="checkout-full-list">
+                {this.props.itemsInCart.map(item => {
+                  subTotal = item.quantity * item.price
+                  priceTotal += subTotal
+                  return <DisplayCheckout key={item.bookId} item={item} />
+                })}
+              </ul>
+              <h5 className="checkout-total">Total: {priceTotal / 100}</h5>
+              <button
+                className="button-checkout"
+                type="button"
+                onClick={this.handleClick}
+              >
+                Sumbit Order
+              </button>
+            </div>
           </div>
         ) : (
           <h3>Thank you for shopping with us!</h3>
