@@ -4,6 +4,7 @@ import axios from 'axios'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
 const EDITED_CART = 'EDITED_CART'
+const CHECKOUT_CART = 'CHECKOUT_CART'
 const REMOVE_FROM_THE_CART = 'REMOVE_FROM_THE_CART'
 
 //ACTION CREATOR
@@ -20,6 +21,10 @@ const gotCart = cart => ({
 const editedCart = edited => ({
   type: EDITED_CART,
   edited
+})
+
+const finishedCheckout = () => ({
+  type: CHECKOUT_CART
 })
 
 const removeBook = id => ({
@@ -63,6 +68,13 @@ export const editCart = (edited, change = 0) => {
     }
   }
 }
+export const checkoutCart = () => {
+  return async dispatch => {
+    await axios.put(`/api/order/checkout`)
+    dispatch(finishedCheckout())
+  }
+}
+
 export const deleteBook = id => {
   return async dispatch => {
     try {
@@ -96,6 +108,8 @@ export default function(state = initialState, action) {
         }
       })
       return {...state, cart: updatedCart}
+    case CHECKOUT_CART:
+      return {...state}
     case REMOVE_FROM_THE_CART:
       console.log(state)
       return {
