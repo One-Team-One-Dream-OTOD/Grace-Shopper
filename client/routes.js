@@ -4,6 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Cart, Checkout} from './components'
 import SingleBook from './components/single-book'
+import Profile from './components/profile'
+import EditEmail from './components/edit-email'
+import EditPassword from './components/edit-password'
+import OrderHistory from './components/order-history'
 import {me} from './store'
 
 /**
@@ -29,6 +33,10 @@ class Routes extends Component {
           {/* Routes placed here are only available after logging in */}
           <Route exact path="/" component={UserHome} />
           <Route exact path="/home" component={UserHome} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile/edit/email" component={EditEmail} />
+          <Route exact path="/profile/edit/password" component={EditPassword} />
+          <Route exact path="/order-history" component={OrderHistory} />
         </Switch>
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
