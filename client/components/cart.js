@@ -19,7 +19,7 @@ class Cart extends React.Component {
         <div>
           <Link to="/checkout">
             <button type="button" className="button-checkout">
-              Checkout!
+              Checkout
             </button>
           </Link>
         </div>
@@ -41,7 +41,6 @@ class Cart extends React.Component {
               })}
             </ul>
             <div className="cart-total">Total: {cartTotal / 100}</div>
-            <button>CHECKOUT</button>
           </React.Fragment>
         )}
       </div>
