@@ -93,6 +93,7 @@ router.post('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
+      // need to change to look at Order userId
       const editCart = await OrderProduct.update(req.body, {
         where: {
           userId: req.user.id,

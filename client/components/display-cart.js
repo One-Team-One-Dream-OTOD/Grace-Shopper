@@ -5,6 +5,7 @@ const DisplayCart = props => {
   console.log(props)
   const quantity = props.order.quantity
   const price = props.order.price
+  const order = {quantity, price, id: book.id}
   return (
     <div className="single_book">
       <div className="cart-image">
@@ -16,7 +17,7 @@ const DisplayCart = props => {
           <button
             className="minus-btn"
             type="button"
-            onClick={() => props.editCart({quantity, price, id: book.id}, -1)}
+            onClick={() => props.editCart(order, -1)}
           >
             {' '}
             -{' '}
@@ -25,7 +26,7 @@ const DisplayCart = props => {
           <button
             className="plus-btn"
             type="button"
-            onClick={() => props.editCart({quantity, price, id: book.id}, 1)}
+            onClick={() => props.editCart(order, 1)}
           >
             {' '}
             +{' '}
