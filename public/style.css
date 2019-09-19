@@ -168,10 +168,28 @@ button {
   align-items: flex-end;
 }
 
-.delete-btn {
+.delete-btn,
+.quantity-btn {
   height: 20px;
   width: 20px;
 }
+
+.delete-btn i,
+.quantity-btn i,
+.cart-item-qty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item-qty h6 {
+  margin: 5px;
+}
+
+.cart-item-details > h6 {
+  margin: 20px;
+}
+
 .cart-item-details {
   height: 130px;
   width: 280px;
