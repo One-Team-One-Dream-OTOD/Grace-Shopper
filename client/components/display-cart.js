@@ -35,6 +35,7 @@ const DisplayCart = props => {
         <h6>Price: {price / 100}</h6>
         <div className="button">
           <button
+            type="button"
             className="delete-btn"
             onClick={() => props.deleteBook(book.id)}
           >

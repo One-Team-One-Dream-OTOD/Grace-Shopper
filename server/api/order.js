@@ -93,14 +93,42 @@ router.post('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      // need to change to look at Order userId
+      console.log('the body', req.body)
+
       const editCart = await OrderProduct.update(req.body, {
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id
+            }
+          }
+        ],
         where: {
-          userId: req.user.id,
           bookId: req.body.id
         }
       })
-      res.json(editCart)
+
+      if (editCart[0] !== 1) {
+        res.status(404).json('Not Found')
+      }
+
+      const updatedCart = await OrderProduct.findOne({
+        where: {
+          bookId: req.body.id
+        },
+        include: [
+          {
+            model: Order,
+            where: {
+              userId: req.user.id
+            }
+          },
+          Book
+        ]
+      })
+
+      res.json(updatedCart)
     } else if (req.session.cart) {
       const item = req.session.cart.findIndex(
         book => book.bookId === req.body.id

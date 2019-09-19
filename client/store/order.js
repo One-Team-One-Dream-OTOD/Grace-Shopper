@@ -48,26 +48,6 @@ export const getCart = () => {
   }
 }
 
-export const editCart = (edited, change = 0) => {
-  return async (dispatch, getState) => {
-    try {
-      console.log('edited', edited)
-
-      const {cart} = getState().order
-      let price = cart.find(order => order.bookId === edited.id).price
-
-      edited.quantity = edited.quantity + change
-      edited.price = edited.quantity * price
-
-      console.log(edited)
-
-      const {data} = await axios.put('/api/order/', edited)
-      dispatch(editedCart(data))
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
 export const checkoutCart = () => {
   return async dispatch => {
     await axios.put(`/api/order/checkout`)
@@ -86,6 +66,23 @@ export const deleteBook = id => {
   }
 }
 
+export const editCart = (edited, change = 0) => {
+  return async dispatch => {
+    try {
+      edited.quantity = edited.quantity + change
+
+      if (edited.quantity === 0) {
+        dispatch(deleteBook(edited.id))
+      } else {
+        const {data} = await axios.put('/api/order/', edited)
+        dispatch(editedCart(data))
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 //INITIAL STATE
 let initialState = {
   cart: []
@@ -100,11 +97,11 @@ export default function(state = initialState, action) {
     case GET_CART:
       return {...state, cart: action.cart}
     case EDITED_CART:
-      updatedCart = state.cart.map(book => {
-        if (book.id === action.edited.id) {
+      updatedCart = state.cart.map(order => {
+        if (order.bookId === action.edited.bookId) {
           return action.edited
         } else {
-          return {...book}
+          return {...order}
         }
       })
       return {...state, cart: updatedCart}
