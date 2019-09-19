@@ -3,6 +3,7 @@ import axios from 'axios'
 //ACTION TYPES
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
+const CHECKOUT_CART = 'CHECKOUT_CART'
 const REMOVE_FROM_THE_CART = 'REMOVE_FROM_THE_CART'
 
 //ACTION CREATOR
@@ -14,6 +15,10 @@ const addedToCart = order => ({
 const gotCart = cart => ({
   type: GET_CART,
   cart
+})
+
+const finishedCheckout = () => ({
+  type: CHECKOUT_CART
 })
 
 const removeBook = id => ({
@@ -31,10 +36,16 @@ export const addToCart = book => {
 }
 
 export const getCart = () => {
-  console.log('GOT TO CART')
   return async dispatch => {
     const {data} = await axios.get(`/api/order/`)
     dispatch(gotCart(data))
+  }
+}
+
+export const checkoutCart = () => {
+  return async dispatch => {
+    await axios.put(`/api/order/checkout`)
+    dispatch(finishedCheckout())
   }
 }
 
@@ -61,6 +72,8 @@ export default function(state = initialState, action) {
       return {...state, cart: [...state.cart]}
     case GET_CART:
       return {...state, cart: action.cart}
+    case CHECKOUT_CART:
+      return {...state}
     case REMOVE_FROM_THE_CART:
       console.log(state)
       return {
