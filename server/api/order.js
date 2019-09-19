@@ -21,6 +21,7 @@ router.get('/', async (req, res, next) => {
       })
       res.json(order)
     } else {
+      console.log(req.session.cart)
       res.json(req.session.cart)
     }
   } catch (error) {
@@ -67,7 +68,7 @@ router.post('/', async (req, res, next) => {
     // now handle guest carts
   } else {
     const guestOrder = {
-      userId: null,
+      orderId: null,
       bookId: req.body.id,
       book: req.body,
       quantity: 1,
@@ -161,10 +162,39 @@ router.put('/checkout', async (req, res, next) => {
     if (req.user) {
       const usersOrder = await Order.update(
         {isPurchased: true},
-        {where: {userId: req.user.id}}
+        {
+          where: {
+            userId: req.user.id,
+            isPurchased: false
+          }
+        }
       )
 
       res.json(usersOrder)
+    } else if (req.session.cart) {
+      const guestOrder = await Order.create({
+        userId: 1
+      })
+
+      req.session.cart.forEach(async order => {
+        await OrderProduct.create({
+          orderId: guestOrder.id,
+          bookId: order.bookId,
+          price: order.price,
+          quantity: order.quantity
+        })
+      })
+
+      const guestOrderUpdate = await Order.update(
+        {isPurchased: true},
+        {
+          where: {
+            id: guestOrder.id
+          }
+        }
+      )
+      req.session.cart = []
+      res.json(req.session.cart)
     }
   } catch (error) {
     next(error)
