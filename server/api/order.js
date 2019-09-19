@@ -112,15 +112,37 @@ router.put('/', async (req, res, next) => {
 router.put('/checkout', async (req, res, next) => {
   try {
     if (req.user) {
-      const checkout = await Order.Update({
-        isPurchased: true,
-        where: {
-          userId: req.user.id
-        }
-      })
-      res.json(checkout)
+      const usersOrder = await Order.update(
+        {isPurchased: true},
+        {where: {userId: req.user.id}}
+      )
+
+      res.json(usersOrder)
     }
   } catch (error) {
     next(error)
+  }
+})
+
+//delete /api/order/:id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      wgere: {
+        userId: req.user.id
+      }
+    })
+
+    const deleteBook = await OrderProduct.findOne({
+      where: {
+        bookId: req.params.id,
+        orderId: order.id
+      }
+    })
+    if (!deleteBook) return res.sendStatus(404)
+    await deleteBook.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
   }
 })
