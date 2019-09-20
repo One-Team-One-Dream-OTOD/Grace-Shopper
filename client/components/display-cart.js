@@ -30,15 +30,17 @@ const DisplayCart = props => {
             <i className="fas fa-plus" />
           </button>
         </div>
-        <h6>Price: {price * quantity / 100}</h6>
-        <div className="button">
-          <button
-            type="button"
-            className="delete-btn"
-            onClick={() => props.deleteBook(book.id)}
-          >
-            <i className="fas fa-times" />
-          </button>
+        <div className="priceAndDell">
+          <h6>Price: {price * quantity / 100}</h6>
+          <div className="button">
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={() => props.deleteBook(book.id)}
+            >
+              <i className="fas fa-times" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
