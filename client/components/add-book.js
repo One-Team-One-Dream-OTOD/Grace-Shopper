@@ -24,6 +24,14 @@ class AddBook extends Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.addBook(this.state)
+    this.setState({
+      name: '',
+      description: '',
+      price: 0,
+      quantity: 0,
+      imageUrl: '',
+      SKU: ''
+    })
   }
   render() {
     const {name, description, price, quantity, imageUrl, SKU} = this.state
