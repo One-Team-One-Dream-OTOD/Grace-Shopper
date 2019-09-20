@@ -24,7 +24,7 @@ class Cart extends React.Component {
           </Link>
         </div>
         {this.props.cart.length < 1 ? (
-          <div>NO ITEMS IN CART</div>
+          <div className="no-item">NO ITEMS IN CART</div>
         ) : (
           <React.Fragment>
             <ul className="cart-full-list">

@@ -16,12 +16,18 @@ class AllBooks extends Component {
         <div className="allProducts">
           {books.map(book => (
             <div key={book.id} className="single_book">
-              <Link to={`/books/${book.id}`}>{book.name}</Link>
-              <img src={book.imageUrl} className="book_img" />
-              <div>${book.price / 100}</div>
-              <button onClick={() => this.props.addToCart(book)}>
-                ADD TO CART
-              </button>
+              <div className="top">
+                <Link to={`/books/${book.id}`}>{book.name}</Link>
+              </div>
+              <div className="mid">
+                <img src={book.imageUrl} className="book_img" />
+              </div>
+              <div className="bot">
+                <div>${book.price / 100}</div>
+                <button onClick={() => this.props.addToCart(book)}>
+                  ADD TO CART
+                </button>
+              </div>
             </div>
           ))}
         </div>
