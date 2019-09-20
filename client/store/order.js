@@ -90,10 +90,12 @@ let initialState = {
 
 export default function(state = initialState, action) {
   let updatedCart
+
   switch (action.type) {
     case ADD_TO_CART:
       //Refactored because of multiple of same items were being added to Cart Component
-      return {...state, cart: [...state.cart]}
+      console.log(action.order)
+      return {...state, cart: action.order}
     case GET_CART:
       return {...state, cart: action.cart}
     case EDITED_CART:
