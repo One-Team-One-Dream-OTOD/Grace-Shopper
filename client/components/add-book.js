@@ -49,13 +49,6 @@ class AddBook extends Component {
               value={name}
               onChange={this.handleChange}
             />
-            <label htmlFor="description">Description:</label>
-            <input
-              type="text"
-              name="description"
-              value={description}
-              onChange={this.handleChange}
-            />
             <label htmlFor="price">Price:</label>
             <input
               type="number"
@@ -70,18 +63,27 @@ class AddBook extends Component {
               value={quantity}
               onChange={this.handleChange}
             />
-            <label htmlFor="imageUrl">Image URL:</label>
-            <input
-              type="text"
-              name="imageUrl"
-              value={imageUrl}
-              onChange={this.handleChange}
-            />
             <label htmlFor="SKU">SKU:</label>
             <input
               type="text"
               name="SKU"
               value={SKU}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="description">Description:</label>
+            <textarea
+              rows="4"
+              columns="100"
+              name="description"
+              value={description}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="imageUrl">Image URL:</label>
+            <textarea
+              rows="4"
+              columns="100"
+              name="imageUrl"
+              value={imageUrl}
               onChange={this.handleChange}
             />
             <input type="submit" text="Add Book" />
