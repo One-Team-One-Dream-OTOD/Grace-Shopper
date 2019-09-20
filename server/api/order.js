@@ -53,13 +53,13 @@ router.post('/', async (req, res, next) => {
         quantity: addToOrderProduct[0].quantity + 1
       })
 
-      const returnValue = await OrderProduct.findOne({
+      const returnValue = await OrderProduct.findAll({
         include: [Book],
         where: {
-          orderId: addCart[0].id,
-          bookId: req.body.id
+          orderId: addCart[0].id
         }
       })
+      console.log(returnValue)
 
       res.json(returnValue)
     } catch (error) {
@@ -90,7 +90,7 @@ router.post('/', async (req, res, next) => {
     } else {
       req.session.cart = [guestOrder]
     }
-    res.json(guestOrder)
+    res.json(req.session.cart)
   }
 })
 
