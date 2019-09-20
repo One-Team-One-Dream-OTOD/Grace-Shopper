@@ -21,7 +21,6 @@ router.get('/', async (req, res, next) => {
       })
       res.json(order)
     } else {
-      console.log(req.session.cart)
       res.json(req.session.cart)
     }
   } catch (error) {
