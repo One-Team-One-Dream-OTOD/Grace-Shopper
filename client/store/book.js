@@ -3,10 +3,12 @@ import axios from 'axios'
 // Action Types
 const GET_ALL_BOOKS = 'GET_ALL_BOOKS'
 const GET_SINGLE_BOOK = 'GET_SINGLE_BOOK'
+const ADDED_BOOK = 'ADDED_BOOK'
 
 // Action Creators
 const getAllBooks = books => ({type: GET_ALL_BOOKS, books})
 const getSingleBook = book => ({type: GET_SINGLE_BOOK, book})
+const addedBook = book => ({type: ADDED_BOOK, book})
 
 // Thunk Creators
 export const getBooks = () => async dispatch => {
@@ -27,6 +29,15 @@ export const getBook = id => async dispatch => {
   }
 }
 
+export const addBook = book => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/books', book)
+    dispatch(addedBook(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // Initial State
 const defaultBook = {
   books: [],
@@ -40,6 +51,8 @@ export default function(state = defaultBook, action) {
       return {...state, books: action.books}
     case GET_SINGLE_BOOK:
       return {...state, selectedBook: action.book}
+    case ADDED_BOOK:
+      return {...state, books: [...state.books, action.book]}
     default:
       return state
   }
