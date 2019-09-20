@@ -4,7 +4,7 @@ const Genre = require('./genre')
 const Author = require('./author')
 const Order = require('./order')
 const OrderProduct = require('./order-product')
-const db = require('../db')
+const Role = require('./role')
 
 Book.belongsTo(Author)
 Author.hasMany(Book)
@@ -24,11 +24,15 @@ Order.belongsToMany(Book, {through: OrderProduct})
 OrderProduct.belongsTo(Order)
 OrderProduct.belongsTo(Book)
 
+User.belongsTo(Role)
+Role.hasMany(User)
+
 module.exports = {
   User,
   Book,
   Genre,
   Author,
   Order,
-  OrderProduct
+  OrderProduct,
+  Role
 }

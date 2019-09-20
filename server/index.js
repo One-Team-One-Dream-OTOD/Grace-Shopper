@@ -33,7 +33,7 @@ passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await db.models.user.findByPk(id)
+    const user = await db.models.user.findByPk(id, {include: [db.models.role]})
     done(null, user)
   } catch (err) {
     done(err)
@@ -63,12 +63,6 @@ const createApp = () => {
   )
   app.use(passport.initialize())
   app.use(passport.session())
-
-  app.use((req, res, next) => {
-    if (!req.session.counter) req.session.counter = 0
-    console.log('counter', ++req.session.counter) // increment THEN log
-    next() // needed to continue through express middleware
-  })
 
   // auth and api routes
   app.use('/auth', require('./auth'))

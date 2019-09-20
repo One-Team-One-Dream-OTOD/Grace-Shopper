@@ -31,7 +31,7 @@ nav {
   flex-direction: row-reverse;
   justify-content: space-around;
   margin-left: 5px;
-  width: 25%;
+  width: 35%;
 }
 
 form div {
@@ -41,7 +41,7 @@ form div {
 
 h3 {
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 40px;
 }
 
 form {
@@ -83,17 +83,27 @@ button {
 }
 
 .book_img {
-  height: 80%;
-  width: 100%;
+  height: 460px;
+  width: 280px;
 }
 
 .single_book {
+  display: flex;
+  flex-direction: column;
   height: 600px;
   width: 300px;
-  margin: 10px;
+  margin: 15px;
+  margin-bottom: 23px;
   padding: 10px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  transition: all;
+}
+.single_book:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition-duration: 100ms;
 }
 
 .loggin {
@@ -110,6 +120,13 @@ button {
   display: flex;
   justify-content: center;
   width: 100%;
+  background-color: #666666;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 0px #b2a98f, 0px 10px 8px rgba(0, 0, 0, 0.15),
+    0px 15px 2px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(129, 126, 126, 0.1);
 }
 
 .singleBook {
@@ -127,8 +144,14 @@ button {
 
 .single_book_right {
   display: flex;
-  margin-left: 5px;
+  border-radius: 10px;
+  margin-left: -25px;
   flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+  z-index: -1;
 }
 
 .login_form {
@@ -169,10 +192,28 @@ button {
   align-items: flex-end;
 }
 
-.delete-btn {
+.delete-btn,
+.quantity-btn {
   height: 20px;
   width: 20px;
 }
+
+.delete-btn i,
+.quantity-btn i,
+.cart-item-qty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item-qty h6 {
+  margin: 5px;
+}
+
+.cart-item-details > h6 {
+  margin: 20px;
+}
+
 .cart-item-details {
   height: 130px;
   width: 280px;
@@ -183,6 +224,7 @@ button {
   color: white;
   background: rgb(125, 131, 214);
   border-radius: 10px;
+  margin-left: 20px;
 }
 
 .button-checkout:hover {
@@ -201,4 +243,43 @@ button {
   border-radius: 5px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.checkout-thank-you {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+.mid {
+  height: 80%;
+}
+
+.top {
+  height: 10%;
+}
+
+.bot {
+  height: 10%;
+}
+
+.priceAndDell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.logo_img {
+  margin-top: -7px;
+}
+
+.no-item {
+  text-align: center;
+  font-size: 30px;
+  background-color: #9e9d9d;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

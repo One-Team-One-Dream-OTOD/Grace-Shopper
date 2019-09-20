@@ -1,18 +1,27 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
-const {Book} = require('../server/db/models')
-const {Genre} = require('../server/db/models')
-const {Author} = require('../server/db/models')
+const {User, Book, Genre, Author, Role} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
+  const roles = await Promise.all([
+    Role.create({description: 'Default'}),
+    Role.create({
+      description: 'Admin',
+      addProduct: true,
+      editProduct: true,
+      editUser: true
+    })
+  ])
+
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'guest@email.com', password: '123', roleId: 1}),
+    User.create({email: 'cody@email.com', password: '123', roleId: 1}),
+    User.create({email: 'murphy@email.com', password: '123', roleId: 1}),
+    User.create({email: 'codySr@email.com', password: '123', roleId: 2})
   ])
 
   const authors = await Promise.all([
