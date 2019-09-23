@@ -104,7 +104,8 @@ router.put('/', async (req, res, next) => {
           {
             model: Order,
             where: {
-              userId: req.user.id
+              userId: req.user.id,
+              isPurchased: false
             }
           }
         ],
@@ -113,9 +114,9 @@ router.put('/', async (req, res, next) => {
         }
       })
 
-      // if (editCart[0] !== 1) {
-      //   res.status(404).json('Not Found')
-      // }
+      if (editCart[0] !== 1) {
+        res.status(404).json('Not Found')
+      }
 
       const updatedCart = await OrderProduct.findOne({
         where: {

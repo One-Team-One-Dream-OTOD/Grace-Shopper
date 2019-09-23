@@ -11,26 +11,48 @@ const AuthForm = props => {
 
   return (
     <div className="form-container">
-      <div className="login_form">
-        <form onSubmit={handleSubmit} name={name}>
+      <div className="login-wrap">
+        <img
+          src="http://www.romolagarai.org/imgs/full/115/1158291_stacked-books-png.jpg"
+          alt=""
+          className="login-img"
+        />
+        <div className="login_form">
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <input name="email" type="text" className="email-input" />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <input
+                name="password"
+                type="password"
+                className="password-input"
+              />
+            </div>
+            <div>
+              <button type="submit" className="login-btn">
+                {displayName}
+              </button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
           <div>
-            <label htmlFor="email">
-              <small>Email</small>
-            </label>
-            <input name="email" type="text" />
+            <a href="/auth/google" className="login-with-google">
+              {displayName}{' '}
+              <img
+                src="https://cdn.worldvectorlogo.com/logos/google-1-1.svg"
+                alt=""
+                className="login-with-google-pic"
+              />
+            </a>
           </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-        <a href="/auth/google">{displayName} with Google</a>
+        </div>
       </div>
     </div>
   )
