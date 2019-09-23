@@ -47,7 +47,7 @@ class Checkout extends React.Component {
                 <div className="example">
                   <h1>React Stripe Elements Example</h1>
                   <Elements>
-                    <CheckoutForm />
+                    <CheckoutForm total={priceTotal} />
                   </Elements>
                 </div>
               </StripeProvider>
