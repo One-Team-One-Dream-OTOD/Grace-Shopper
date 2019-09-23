@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import axios from 'axios'
+import DisplayCheckout from './display-checkout'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -12,28 +13,48 @@ class CheckoutForm extends Component {
   async submit(evt) {
     // User clicked submit
     let {token} = await this.props.stripe.createToken({name: 'Name'})
-    console.log(this.props)
     let {amount} = {amount: this.props.total}
-
     let payment = {token, amount}
-
-    console.log(payment)
-
     let response = await axios.post('/charge', payment)
 
-    if (response.data.status === 'succeeded') console.log('Purchase Complete!')
-    if (response.data.status === 'succeeded') this.setState({complete: true})
+    if (response.data.status === 'succeeded') {
+      this.props.checkoutCart()
+      this.setState({complete: true})
+    }
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete</h1>
-
+    if (this.state.complete)
+      return (
+        <h3 className="checkout-thank-you">Thank you for shopping with us!</h3>
+      )
     return (
-      <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={this.submit}>Purchase</button>
-      </div>
+      <React.Fragment>
+        <div className="checkout-row">
+          <div className="checkout-full">
+            <h3>Please Review Your Order</h3>
+            <hr />
+            <ul className="checkout-full-list">
+              {this.props.itemsInCart.map(item => {
+                return <DisplayCheckout key={item.bookId} item={item} />
+              })}
+            </ul>
+            <h5 className="checkout-total">Total: {this.props.total / 100}</h5>
+
+            <div className="checkout">
+              <p>Please input payment information!</p>
+              <CardElement />
+              <button
+                type="button"
+                className="button-checkout"
+                onClick={this.submit}
+              >
+                Purchase
+              </button>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     )
   }
 }
