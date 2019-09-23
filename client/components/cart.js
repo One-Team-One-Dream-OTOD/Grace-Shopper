@@ -16,17 +16,16 @@ class Cart extends React.Component {
         <div className="hello">
           <h1>WELCOME TO CART!</h1>
         </div>
-        <div>
-          <Link to="/checkout">
-            <button type="button" className="button-checkout">
-              Checkout
-            </button>
-          </Link>
-        </div>
+        <div />
         {this.props.cart.length < 1 ? (
           <div className="no-item">NO ITEMS IN CART</div>
         ) : (
           <React.Fragment>
+            <Link to="/checkout">
+              <button type="button" className="button-checkout">
+                Checkout
+              </button>
+            </Link>
             <ul className="cart-full-list">
               {this.props.cart.map(order => {
                 cartTotal += order.price * order.quantity

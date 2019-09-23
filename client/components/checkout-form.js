@@ -12,7 +12,9 @@ class CheckoutForm extends Component {
 
   async submit(evt) {
     // User clicked submit
-    let {token} = await this.props.stripe.createToken({name: 'Name'})
+    let {token} = await this.props.stripe.createToken({
+      name: this.props.currentUser.email || 'Guest'
+    })
     let {amount} = {amount: this.props.total}
     let payment = {token, amount}
     let response = await axios.post('/charge', payment)

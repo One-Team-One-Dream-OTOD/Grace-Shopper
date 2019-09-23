@@ -224,6 +224,7 @@ button {
   background: rgb(125, 131, 214);
   border-radius: 10px;
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .button-checkout:hover {

@@ -29,6 +29,7 @@ class Checkout extends React.Component {
                 total={priceTotal}
                 itemsInCart={this.props.itemsInCart}
                 checkoutCart={this.props.checkoutCart}
+                currentUser={this.props.currentUser}
               />
             </Elements>
           </div>
@@ -40,7 +41,8 @@ class Checkout extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    itemsInCart: state.order.cart
+    itemsInCart: state.order.cart,
+    currentUser: state.user
   }
 }
 
