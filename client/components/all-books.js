@@ -16,9 +16,9 @@ class AllBooks extends Component {
         <div className="allProducts">
           {books.map(book => (
             <div key={book.id} className="single_book">
-              <div className="top">
+              <h4 className="top">
                 <Link to={`/books/${book.id}`}>{book.name}</Link>
-              </div>
+              </h4>
               <div className="mid">
                 <img src={book.imageUrl} className="book_img" />
               </div>
