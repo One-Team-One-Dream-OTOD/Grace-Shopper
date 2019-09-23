@@ -99,40 +99,29 @@ router.put('/', async (req, res, next) => {
   // handle edit cart for users
   if (req.user) {
     try {
-      const editCart = await OrderProduct.update(req.body, {
+      const updatedCart = await OrderProduct.findOne({
         include: [
           {
             model: Order,
             where: {
-              userId: req.user.id
+              userId: req.user.id,
+              isPurchased: false
             }
-          }
+          },
+          Book
         ],
         where: {
           bookId: req.body.id
         }
       })
-
-      // if (editCart[0] !== 1) {
-      //   res.status(404).json('Not Found')
-      // }
-
-      const updatedCart = await OrderProduct.findOne({
-        where: {
-          bookId: req.body.id
-        },
-        include: [
-          {
-            model: Order,
-            where: {
-              userId: req.user.id
-            }
-          },
-          Book
-        ]
-      })
-
-      res.json(updatedCart)
+      if (!updatedCart.bookId) {
+        res.status(404).json('Not Found')
+      } else {
+        const editCart = await updatedCart.update(req.body, {
+          fields: ['quantity', 'price']
+        })
+        res.json(editCart)
+      }
     } catch (error) {
       next(error)
     }
@@ -206,7 +195,8 @@ router.delete('/:id', async (req, res, next) => {
     try {
       const order = await Order.findOne({
         where: {
-          userId: req.user.id
+          userId: req.user.id,
+          isPurchased: false
         }
       })
 

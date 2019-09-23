@@ -11,7 +11,7 @@ const UPDATE_EMAIL = 'UPDATE_EMAIL'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {role: {}}
 
 /**
  * ACTION CREATORS
