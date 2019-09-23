@@ -1,18 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {getOrders} from '../store/history'
 
-class Profile extends React.Component {
-  componentDidMount() {}
+class History extends React.Component {
+  componentDidMount() {
+    this.props.getOrders()
+  }
 
   render() {
-    return <div className="orderhistory">Order History PlaceHolder</div>
+    console.log(this.props.history)
+    return <div className="orderhistory">asdf</div>
   }
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    history: state.history
   }
 }
 
-export default connect(mapStateToProps)(Profile)
+const mapDispatchToProps = dispatch => {
+  return {
+    getOrders: () => dispatch(getOrders())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(History)
