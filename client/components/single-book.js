@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getBook} from '../store/book'
+import {Link} from 'react-router-dom'
 
 class SingleBook extends Component {
   componentDidMount() {
@@ -9,7 +10,14 @@ class SingleBook extends Component {
   }
 
   render() {
-    const {name, description, imageUrl, price} = this.props.selectedBook[0]
+    const {
+      id,
+      name,
+      description,
+      imageUrl,
+      price,
+      user
+    } = this.props.selectedBook[0]
 
     return (
       <div className="singleBook">
@@ -21,6 +29,13 @@ class SingleBook extends Component {
           <p>{description}</p>
           <h4>${price / 100}</h4>
         </div>
+        {user && user.role.editProduct ? (
+          <Link to={`/admin/books/${id}`}>
+            <button type="button">Edit Book</button>
+          </Link>
+        ) : (
+          ''
+        )}
       </div>
     )
   }
@@ -28,7 +43,8 @@ class SingleBook extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedBook: state.book.selectedBook
+    selectedBook: state.book.selectedBook,
+    user: state.user
   }
 }
 

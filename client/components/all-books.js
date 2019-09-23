@@ -24,7 +24,10 @@ class AllBooks extends Component {
               </Link>
               <div className="bot">
                 <div>${book.price / 100}</div>
-                <button onClick={() => this.props.addToCart(book)}>
+                <button
+                  type="button"
+                  onClick={() => this.props.addToCart(book)}
+                >
                   ADD TO CART
                 </button>
               </div>

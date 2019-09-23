@@ -94,7 +94,6 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
       //Refactored because of multiple of same items were being added to Cart Component
-      console.log(action.order)
       return {...state, cart: action.order}
     case GET_CART:
       return {...state, cart: action.cart}
@@ -110,7 +109,6 @@ export default function(state = initialState, action) {
     case CHECKOUT_CART:
       return {...state}
     case REMOVE_FROM_THE_CART:
-      console.log(state)
       return {
         ...state,
         cart: state.cart.filter(book => book.bookId !== action.id)
