@@ -17,3 +17,17 @@ router.get('/', async (req, res, next) => {
   }
   res.json()
 })
+
+router.put('/:id', async (req, res, next) => {
+  if (req.user) {
+    try {
+      await User.update({email: req.body.email}, {where: {id: req.user.id}})
+      const updatedUser = await User.findOne({where: {id: req.user.id}})
+      res.json(updatedUser)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.status(404).json()
+  }
+})

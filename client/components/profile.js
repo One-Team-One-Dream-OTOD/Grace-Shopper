@@ -8,18 +8,13 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-container">
-        <div className="email">
-          <div>Email: {this.props.user.email}</div>
-          <Link to="/profile/edit/email">edit</Link>
-        </div>
+        <div>{this.props.user.email}'s Profile Page</div>
+        <Link to="/profile/edit/email">Change Email</Link>
         <div className="password">
           {this.props.user.googleId ? (
-            <div>Not Avaiable as Sign In with Google</div>
+            <div>Not Available as Sign In with Google</div>
           ) : (
-            <div>
-              <div>Password: {this.props.user.password}</div>
-              <Link to="/profile/edit/password">edit</Link>
-            </div>
+            <Link to="/profile/edit/password">Change Password</Link>
           )}
         </div>
         <Link to="/order-history">Order History</Link>
