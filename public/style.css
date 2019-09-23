@@ -161,6 +161,16 @@ button {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+.edit_book_right {
+  display: flex;
+  border-radius: 10px;
+  margin-left: -25px;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 .login_form {
   display: flex;
   flex-direction: column;
@@ -243,6 +253,7 @@ button {
   background: rgb(125, 131, 214);
   border-radius: 10px;
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .button-checkout:hover {
