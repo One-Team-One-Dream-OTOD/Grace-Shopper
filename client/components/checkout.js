@@ -26,34 +26,36 @@ class Checkout extends React.Component {
     let subTotal = 0.0
     return (
       <React.Fragment>
-        <h3>Checkout Here!</h3>
-        {!this.state.hasPaid ? (
-          <div className="checkout-row">
-            <div className="checkout-full">
-              <h3>Please Review Your Order</h3>
-              <hr />
-              <ul className="checkout-full-list">
-                {this.props.itemsInCart.map(item => {
-                  subTotal = item.quantity * item.price
-                  priceTotal += subTotal
-                  return <DisplayCheckout key={item.bookId} item={item} />
-                })}
-              </ul>
-              <h5 className="checkout-total">Total: {priceTotal / 100}</h5>
-              <button
-                className="button-checkout"
-                type="button"
-                onClick={this.handleClick}
-              >
-                Sumbit Order
-              </button>
+        <div className="checkOut-form">
+          <h3>Checkout Here!</h3>
+          {!this.state.hasPaid ? (
+            <div className="checkout-row">
+              <div className="checkout-full">
+                <h3>Please Review Your Order</h3>
+                <hr />
+                <ul className="checkout-full-list">
+                  {this.props.itemsInCart.map(item => {
+                    subTotal = item.quantity * item.price
+                    priceTotal += subTotal
+                    return <DisplayCheckout key={item.bookId} item={item} />
+                  })}
+                </ul>
+                <h5 className="checkout-total">Total: {priceTotal / 100}</h5>
+                <button
+                  className="button-checkout"
+                  type="button"
+                  onClick={this.handleClick}
+                >
+                  Sumbit Order
+                </button>
+              </div>
             </div>
-          </div>
-        ) : (
-          <h3 className="checkout-thank-you">
-            Thank you for shopping with us!
-          </h3>
-        )}
+          ) : (
+            <h3 className="checkout-thank-you">
+              Thank you for shopping with us!
+            </h3>
+          )}
+        </div>
       </React.Fragment>
     )
   }

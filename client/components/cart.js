@@ -16,33 +16,35 @@ class Cart extends React.Component {
         <div className="hello">
           <h1>WELCOME TO CART!</h1>
         </div>
-        <div>
-          <Link to="/checkout">
-            <button type="button" className="button-checkout">
-              Checkout
-            </button>
-          </Link>
+        <div className="top-wrap">
+          <div>
+            <Link to="/checkout">
+              <button type="button" className="button-checkout">
+                Checkout
+              </button>
+            </Link>
+          </div>
+          {this.props.cart.length < 1 ? (
+            <div className="no-item">NO ITEMS IN CART</div>
+          ) : (
+            <React.Fragment>
+              <ul className="cart-full-list">
+                {this.props.cart.map(order => {
+                  cartTotal += order.price * order.quantity
+                  return (
+                    <DisplayCart
+                      key={order.price}
+                      order={order}
+                      deleteBook={this.props.deleteBook}
+                      editCart={this.props.editCart}
+                    />
+                  )
+                })}
+              </ul>
+              <div className="cart-total">Total: {cartTotal / 100}</div>
+            </React.Fragment>
+          )}
         </div>
-        {this.props.cart.length < 1 ? (
-          <div className="no-item">NO ITEMS IN CART</div>
-        ) : (
-          <React.Fragment>
-            <ul className="cart-full-list">
-              {this.props.cart.map(order => {
-                cartTotal += order.price * order.quantity
-                return (
-                  <DisplayCart
-                    key={order.price}
-                    order={order}
-                    deleteBook={this.props.deleteBook}
-                    editCart={this.props.editCart}
-                  />
-                )
-              })}
-            </ul>
-            <div className="cart-total">Total: {cartTotal / 100}</div>
-          </React.Fragment>
-        )}
       </div>
     )
   }
