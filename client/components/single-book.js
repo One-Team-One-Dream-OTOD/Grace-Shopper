@@ -10,10 +10,9 @@ class SingleBook extends Component {
   }
 
   render() {
-    console.log(this.props.addToCart)
     const {name, description, imageUrl, price} = this.props.selectedBook[0]
     const book = this.props.selectedBook[0]
-    console.log(book)
+
     return (
       <div className="singleBook">
         <div className="single_book_left">
@@ -23,9 +22,14 @@ class SingleBook extends Component {
           <h1>{name}</h1>
           <p>{description}</p>
           <h4>${price / 100}</h4>
-          <button onClick={() => this.props.addToCart(book)}>
-            Add to the cart
-          </button>
+          <div className="sp-btn">
+            <button
+              onClick={() => this.props.addToCart(book)}
+              className="button-checkout"
+            >
+              Add to the cart
+            </button>
+          </div>
         </div>
       </div>
     )
