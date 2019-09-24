@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getBooks} from '../store/book'
-import {addToCart} from '../store/order'
+import {addToCart, getCart} from '../store/order'
 import Toasts from './toasts'
 import {addToast} from '../store/toast'
 
@@ -19,6 +19,7 @@ class AllBooks extends Component {
 
   componentDidMount() {
     this.props.getBooks()
+    this.props.getCart()
   }
 
   render() {
@@ -62,7 +63,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getBooks: () => dispatch(getBooks()),
     addToCart: book => dispatch(addToCart(book)),
-    addToast: options => dispatch(addToast(options))
+    addToast: options => dispatch(addToast(options)),
+    getCart: () => dispatch(getCart())
   }
 }
 

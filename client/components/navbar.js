@@ -5,12 +5,13 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getCart} from '../store/order'
 
-
 const Navbar = ({handleClick, isLoggedIn, cartItems}) => {
   let cartBadge = 0
-  cartItems.map(cart => {
-    cartBadge += cart.quantity
-  })
+  if (cartItems.length !== 0) {
+    cartItems.map(cart => {
+      cartBadge += cart.quantity
+    })
+  }
 
   return (
     <div className="navbar">
