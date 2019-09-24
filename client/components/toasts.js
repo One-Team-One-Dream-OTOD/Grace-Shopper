@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {removeToast} from '../store/toast'
-import Toast from './Toast'
+import Toast from './toast'
 
 const Toasts = props => {
   return (
