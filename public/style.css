@@ -352,9 +352,10 @@ small {
 .profile-container {
   display: flex;
   justify-content: center;
-  margin-top: 2%;
   flex-direction: column;
   align-items: center;
+
+  /* background-image: url("https://photoworks-wpengine.netdna-ssl.com/wp-content/uploads/2014/02/BlankBookCover.jpg"); */
 }
 
 .email-container {
@@ -367,4 +368,42 @@ small {
 
 .email-edit {
   display: flex;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-name {
+  font-size: 40px;
+  background-color: #666666;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 0px #b2a98f, 0px 10px 8px rgba(0, 0, 0, 0.15),
+    0px 15px 2px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(129, 126, 126, 0.1);
+}
+
+.warning {
+  color: rgb(241, 161, 161);
+  font-size: 20px;
+}
+
+.edit-btns {
+  font-size: 25px;
+  color: white;
+  background: rgb(125, 131, 214);
+  border-radius: 10px;
+  margin-left: 20px;
+  width: 30%;
+  margin: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-img {
 }
