@@ -2,11 +2,24 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getBooks} from '../store/book'
-import {addToCart} from '../store/order'
+import {addToCart, getCart} from '../store/order'
+import Toasts from './toasts'
+import {addToast} from '../store/toast'
 
 class AllBooks extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(book) {
+    this.props.addToast({text: `Added ${book.name} to cart!`})
+    this.props.addToCart(book)
+  }
+
   componentDidMount() {
     this.props.getBooks()
+    this.props.getCart()
   }
 
   render() {
@@ -26,16 +39,14 @@ class AllBooks extends Component {
               </Link>
               <div className="bot">
                 <div>${book.price / 100}</div>
-                <button
-                  type="button"
-                  onClick={() => this.props.addToCart(book)}
-                >
+                <button onClick={() => this.handleClick(book)}>
                   ADD TO CART
                 </button>
               </div>
             </div>
           ))}
         </div>
+        <Toasts />
       </React.Fragment>
     )
   }
@@ -51,7 +62,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getBooks: () => dispatch(getBooks()),
-    addToCart: book => dispatch(addToCart(book))
+    addToCart: book => dispatch(addToCart(book)),
+    addToast: options => dispatch(addToast(options)),
+    getCart: () => dispatch(getCart())
   }
 }
 

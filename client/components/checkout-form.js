@@ -21,6 +21,7 @@ class CheckoutForm extends Component {
 
     if (response.data.status === 'succeeded') {
       this.props.checkoutCart()
+      this.props.getCart()
       this.setState({complete: true})
     }
   }

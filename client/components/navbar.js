@@ -5,53 +5,62 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getCart} from '../store/order'
 
-const Navbar = ({handleClick, isLoggedIn, cartItems, user}) => (
-  <div className="navbar">
-    <div className="logo">
-      <Link to="/home">
-        <img
-          className="logo_img"
-          src="http://www.rainforest.com/homepageimages/rf-logo.png"
-          alt="logo"
-        />
-      </Link>
-    </div>
-    <nav>
-      {isLoggedIn ? (
-        <div className="loggin">
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home" className="nav">
-            Home
-          </Link>
-          <Link to="/profile" className="nav">
-            Profile
-          </Link>
-          <a href="#" onClick={handleClick} className="nav">
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div className="loggin">
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login" className="nav">
-            Login
-          </Link>
-          <Link to="/signup" className="nav">
-            Sign Up
-          </Link>
-        </div>
-      )}
-      <div>
-        <Link to="/cart" className="nav">
-          <span>
-            {cartItems.length}
-            <i className="fas fa-cart-arrow-down" />
-          </span>
+const Navbar = ({handleClick, isLoggedIn, cartItems}) => {
+  let cartBadge = 0
+  if (cartItems.length !== 0) {
+    cartItems.map(cart => {
+      cartBadge += cart.quantity
+    })
+  }
+
+  return (
+    <div className="navbar">
+      <div className="logo">
+        <Link to="/home">
+          <img
+            className="logo_img"
+            src="http://www.rainforest.com/homepageimages/rf-logo.png"
+            alt="logo"
+          />
         </Link>
       </div>
-    </nav>
-  </div>
-)
+      <nav>
+        {isLoggedIn ? (
+          <div className="loggin">
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home" className="nav">
+              Home
+            </Link>
+            <Link to="/profile" className="nav">
+              Profile
+            </Link>
+            <a href="#" onClick={handleClick} className="nav">
+              Logout
+            </a>
+          </div>
+        ) : (
+          <div className="loggin">
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login" className="nav">
+              Login
+            </Link>
+            <Link to="/signup" className="nav">
+              Sign Up
+            </Link>
+          </div>
+        )}
+        <div>
+          <Link to="/cart" className="nav">
+            <span>
+              {cartBadge}
+              <i className="fas fa-cart-arrow-down" />
+            </span>
+          </Link>
+        </div>
+      </nav>
+    </div>
+  )
+}
 
 /**
  * CONTAINER
