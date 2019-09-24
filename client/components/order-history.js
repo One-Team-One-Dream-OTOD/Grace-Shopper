@@ -9,7 +9,42 @@ class History extends React.Component {
 
   render() {
     console.log(this.props.history)
-    return <div className="orderhistory">asdf</div>
+    console.log(this.props.history.length)
+    if (this.props.history.length === 0) {
+      return <div className="orderhistory">No Previous Orders</div>
+    } else {
+      let orderList = {}
+      this.props.history.forEach(element => {
+        if (orderList[element.orderId]) {
+          orderList[element.orderId].push(element)
+        } else {
+          orderList[element.orderId] = [element]
+        }
+      })
+
+      return (
+        <div className="orderhistory">
+          <h1>OrderHistory</h1>
+          {Object.keys(orderList).map(key => (
+            <div key={key}>
+              <h3>Order #{key}</h3>
+              {orderList[key].map(book => (
+                <div key={book.price} className="order-items">
+                  <img
+                    src={book.book.imageUrl}
+                    className="order-history-bookImg"
+                  />
+                  <div>{book.book.name}</div>
+                  <div>{book.quantity}</div>
+                  <div>${book.price / 100}</div>
+                </div>
+              ))}
+              <div>Total Price: $</div>
+            </div>
+          ))}
+        </div>
+      )
+    }
   }
 }
 

@@ -459,3 +459,20 @@ small {
 .warning {
   color: red;
 }
+.order-history-bookImg {
+  max-width: 10%;
+  max-height: 10%;
+}
+
+.orderhistory {
+  display: flex;
+  margin-top: 2%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-items {
+  display: flex;
+  justify-content: space-between;
+}
