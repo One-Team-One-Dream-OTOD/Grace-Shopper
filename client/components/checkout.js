@@ -29,6 +29,7 @@ class Checkout extends React.Component {
                 itemsInCart={this.props.itemsInCart}
                 checkoutCart={this.props.checkoutCart}
                 currentUser={this.props.currentUser}
+                getCart={this.props.getCart}
               />
             </Elements>
           </div>
