@@ -233,7 +233,10 @@ button {
   justify-content: center;
   align-items: center;
 }
-
+.delete-btn {
+  margin-left: 192px;
+  margin-top: 22px;
+}
 .cart-item-qty h6 {
   margin: 5px;
 }
@@ -285,7 +288,7 @@ button {
   color: #7a7563;
   text-shadow: 0px 3px 0px #b2a98f, 0px 10px 8px rgba(0, 0, 0, 0.15),
     0px 15px 2px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(129, 126, 126, 0.1);
-  position: relative;
+  margin: 0;
 }
 
 .mid {
@@ -384,6 +387,12 @@ small {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 70%;
-  height: 20px;
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  margin-left: 22%;
+}
+
+.quantity {
+  margin: 5px;
 }
