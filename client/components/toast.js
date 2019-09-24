@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, {Component} from 'react'
 
 class Toast extends Component {
@@ -18,12 +17,5 @@ class Toast extends Component {
     return false
   }
 }
-
-//Define some requirments
-// Toast.propTypes = {
-//   color: PropTypes.string.isRequired,
-//   onDismissClick: PropTypes.func.isRequired,
-//   text: PropTypes.string.isRequired
-// };
 
 export default Toast
