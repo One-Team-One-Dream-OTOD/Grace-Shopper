@@ -21,6 +21,7 @@ class CheckoutForm extends Component {
 
     if (response.data.status === 'succeeded') {
       this.props.checkoutCart()
+      this.props.getCart()
       this.setState({complete: true})
     }
   }
@@ -62,3 +63,5 @@ class CheckoutForm extends Component {
 }
 
 export default injectStripe(CheckoutForm)
+
+// testseteststest

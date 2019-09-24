@@ -8,21 +8,29 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-container">
-        <div className="email">
-          <div>Email: {this.props.user.email}</div>
-          <Link to="/profile/edit/email">edit</Link>
+        <div className="profile">
+          <h1 className="profile-name">
+            {this.props.user.email}'s Profile Page
+          </h1>
+          <Link to="/profile/edit/email" className="edit-btns">
+            Change Email
+          </Link>
+          <Link to="/order-history" className="edit-btns">
+            Order History
+          </Link>
+          <div className="password">
+            {this.props.user.googleId ? (
+              <h4 className="warning">
+                You are not Available to change password as Sign In with Google
+              </h4>
+            ) : (
+              <Link to="/profile/edit/password" className="edit-btns">
+                Change Password
+              </Link>
+            )}
+          </div>
         </div>
-        <div className="password">
-          {this.props.user.googleId ? (
-            <div>Not Avaiable as Sign In with Google</div>
-          ) : (
-            <div>
-              <div>Password: {this.props.user.password}</div>
-              <Link to="/profile/edit/password">edit</Link>
-            </div>
-          )}
-        </div>
-        <Link to="/order-history">Order History</Link>
+        <img src="pngguru.com-id-ezcry.png" alt="" className="profile-img" />
       </div>
     )
   }

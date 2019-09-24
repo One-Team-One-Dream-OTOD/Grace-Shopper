@@ -3,47 +3,53 @@ import {connect} from 'react-redux'
 import {getBook} from '../store/book'
 import {Link} from 'react-router-dom'
 import {addToCart} from '../store/order'
+import {addToast} from '../store/toast'
+import Toasts from './toasts'
 
 class SingleBook extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   componentDidMount() {
     const bookId = this.props.match.params.id
     this.props.getBook(bookId)
   }
 
-  render() {
+  handleClick(book) {
+    this.props.addToast({text: `Added ${book.name} to cart!`})
+    this.props.addToCart(book)
+  }
 
+  render() {
     const {id, name, description, imageUrl, price} = this.props.selectedBook[0]
 
     const book = this.props.selectedBook[0]
     const {user} = this.props
 
     return (
-      <div className="singleBook">
-        <div className="single_book_left">
-          <img src={imageUrl} />
-        </div>
-        <div className="single_book_right">
-          <h1>{name}</h1>
-          <p>{description}</p>
-          <h4>${price / 100}</h4>
-          <div className="sp-btn">
-            <button
-              type="button"
-              onClick={() => this.props.addToCart(book)}
-              className="button-checkout"
-            >
-              Add to the cart
-            </button>
+      <React.Fragment>
+        <div className="singleBook">
+          <div className="single_book_left">
+            <img src={imageUrl} />
+          </div>
+          <div className="single_book_right">
+            <h1>{name}</h1>
+            <p>{description}</p>
+            <h4>${price / 100}</h4>
+            <div className="sp-btn">
+              <button
+                onClick={() => this.handleClick(book)}
+                className="button-checkout"
+              >
+                Add to the cart
+              </button>
+            </div>
           </div>
         </div>
-        {user && user.role.editProduct ? (
-          <Link to={`/admin/books/${id}`}>
-            <button type="button">Edit Book</button>
-          </Link>
-        ) : (
-          ''
-        )}
-      </div>
+        <Toasts />
+      </React.Fragment>
     )
   }
 }
@@ -58,7 +64,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getBook: bookId => dispatch(getBook(bookId)),
-    addToCart: book => dispatch(addToCart(book))
+    addToCart: book => dispatch(addToCart(book)),
+    addToast: options => dispatch(addToast(options))
   }
 }
 

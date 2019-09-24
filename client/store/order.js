@@ -51,6 +51,7 @@ export const checkoutCart = () => {
   return async dispatch => {
     await axios.put(`/api/order/checkout`)
     dispatch(finishedCheckout())
+    dispatch(getCart())
   }
 }
 
