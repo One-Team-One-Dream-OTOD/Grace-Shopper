@@ -49,7 +49,9 @@ class SingleBook extends Component {
             </div>
             {user && user.role.editProduct ? (
               <Link to={`/admin/books/${id}`}>
-                <button type="button">Edit Book</button>
+                <button type="button" className="admin-edit">
+                  Edit Book
+                </button>
               </Link>
             ) : (
               ''
