@@ -396,3 +396,7 @@ small {
 .quantity {
   margin: 5px;
 }
+
+.warning {
+  color: red;
+}

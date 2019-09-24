@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from 'react'
 
 export default function ModBook(props) {
@@ -9,7 +10,9 @@ export default function ModBook(props) {
     imageUrl,
     SKU,
     handleSubmit,
-    handleChange
+    handleChange,
+    validationErr,
+    action
   } = props
 
   return (
@@ -19,9 +22,23 @@ export default function ModBook(props) {
           <img src="" />
         </div>
         <div className="edit_book_right">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">
+            Name:
+            {name.length === 0 && validationErr ? (
+              <span className="warning">{` `}Field is required!</span>
+            ) : (
+              ''
+            )}
+          </label>
           <input type="text" name="name" value={name} onChange={handleChange} />
-          <label htmlFor="price">Price:</label>
+          <label htmlFor="price">
+            Price:
+            {(price.length === 0 || price == 0) && validationErr ? (
+              <span className="warning">{` `}Field is required!</span>
+            ) : (
+              ''
+            )}
+          </label>
           <input
             type="number"
             name="price"
@@ -35,9 +52,23 @@ export default function ModBook(props) {
             value={quantity}
             onChange={handleChange}
           />
-          <label htmlFor="SKU">SKU:</label>
+          <label htmlFor="SKU">
+            SKU:
+            {SKU.length === 0 && validationErr ? (
+              <span className="warning">{` `}Field is required!</span>
+            ) : (
+              ''
+            )}
+          </label>
           <input type="text" name="SKU" value={SKU} onChange={handleChange} />
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">
+            Description:
+            {description.length === 0 && validationErr ? (
+              <span className="warning">{` `}Field is required!</span>
+            ) : (
+              ''
+            )}
+          </label>
           <textarea
             rows="4"
             columns="100"
@@ -53,7 +84,7 @@ export default function ModBook(props) {
             value={imageUrl}
             onChange={handleChange}
           />
-          <input type="submit" text="Add Book" />
+          <input type="submit" value={`${action} Book`} />
         </div>
       </div>
     </form>

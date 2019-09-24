@@ -11,16 +11,11 @@ class SingleBook extends Component {
   }
 
   render() {
-    const {
-      id,
-      name,
-      description,
-      imageUrl,
-      price,
-      user
-    } = this.props.selectedBook[0]
+
+    const {id, name, description, imageUrl, price} = this.props.selectedBook[0]
 
     const book = this.props.selectedBook[0]
+    const {user} = this.props
 
     return (
       <div className="singleBook">
@@ -33,6 +28,7 @@ class SingleBook extends Component {
           <h4>${price / 100}</h4>
           <div className="sp-btn">
             <button
+              type="button"
               onClick={() => this.props.addToCart(book)}
               className="button-checkout"
             >

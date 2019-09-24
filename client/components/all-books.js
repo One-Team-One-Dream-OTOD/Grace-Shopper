@@ -11,6 +11,8 @@ class AllBooks extends Component {
 
   render() {
     const books = this.props.books
+    const user = this.props.user
+    console.log('got here', user && user.role.addProduct)
     return (
       <React.Fragment>
         <div className="allProducts">
@@ -41,7 +43,8 @@ class AllBooks extends Component {
 
 const mapStateToProps = state => {
   return {
-    books: state.book.books
+    books: state.book.books,
+    user: state.user
   }
 }
 
