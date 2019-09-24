@@ -13,22 +13,24 @@ const DisplayCart = props => {
       </div>
       <div className="cart-item-details">
         <h6>Book: {book.name}</h6>
-        <div className="form-container cart-item-qty">
-          <button
-            className="quantity-btn"
-            type="button"
-            onClick={() => props.editCart(order, -1)}
-          >
-            <i className="fas fa-minus" />
-          </button>
-          <h6> Quantity: {quantity} </h6>
-          <button
-            className="quantity-btn"
-            type="button"
-            onClick={() => props.editCart(order, 1)}
-          >
-            <i className="fas fa-plus" />
-          </button>
+        <div>
+          <div className="max">
+            <button
+              className="quantity-btn"
+              type="button"
+              onClick={() => props.editCart(order, -1)}
+            >
+              <i className="fas fa-minus" />
+            </button>
+            <h6> Quantity: {quantity} </h6>
+            <button
+              className="quantity-btn"
+              type="button"
+              onClick={() => props.editCart(order, 1)}
+            >
+              <i className="fas fa-plus" />
+            </button>
+          </div>
         </div>
         <div className="priceAndDell">
           <h6>Price: {price * quantity / 100}</h6>
