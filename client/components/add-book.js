@@ -53,6 +53,7 @@ class AddBook extends Component {
         {...this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        action="Add"
       />
     )
   }
