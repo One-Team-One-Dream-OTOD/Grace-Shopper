@@ -11,7 +11,8 @@ class AddBook extends Component {
       price: 0,
       quantity: 0,
       imageUrl: '',
-      SKU: ''
+      SKU: '',
+      validationErr: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,15 +24,26 @@ class AddBook extends Component {
   }
   handleSubmit(event) {
     event.preventDefault()
-    this.props.addBook(this.state)
-    this.setState({
-      name: '',
-      description: '',
-      price: 0,
-      quantity: 0,
-      imageUrl: '',
-      SKU: ''
-    })
+    if (
+      this.state.name.length === 0 ||
+      this.state.description.length === 0 ||
+      this.state.price.length === 0 ||
+      this.state.SKU.length === 0 ||
+      this.state.price === 0
+    ) {
+      this.setState({validationErr: true})
+    } else {
+      this.props.addBook(this.state)
+      this.setState({
+        name: '',
+        description: '',
+        price: 0,
+        quantity: 0,
+        imageUrl: '',
+        SKU: '',
+        validationErr: false
+      })
+    }
   }
   render() {
     const {name, description, price, quantity, imageUrl, SKU} = this.state
