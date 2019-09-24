@@ -9,6 +9,7 @@ import EditEmail from './components/edit-email'
 import EditPassword from './components/edit-password'
 import OrderHistory from './components/order-history'
 import AddBook from './components/add-book'
+import EditBook from './components/edit-book'
 import {me} from './store'
 
 /**
@@ -40,6 +41,11 @@ class Routes extends Component {
           <Route exact path="/order-history" component={OrderHistory} />
           {isLoggedIn && role.addProduct ? (
             <Route exact path="/admin/books/add" component={AddBook} />
+          ) : (
+            ''
+          )}
+          {isLoggedIn && role.editProduct ? (
+            <Route exact path="/admin/books/:id" component={EditBook} />
           ) : (
             ''
           )}

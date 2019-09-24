@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import {addBook} from '../store'
+import {editBook} from '../store'
 import {connect} from 'react-redux'
 import ModBook from './mod-book'
 
-class AddBook extends Component {
+class EditBook extends Component {
   constructor() {
     super()
     this.state = {
@@ -34,17 +34,12 @@ class AddBook extends Component {
     ) {
       this.setState({validationErr: true})
     } else {
-      this.props.addBook(this.state)
-      this.setState({
-        name: '',
-        description: '',
-        price: 0,
-        quantity: 0,
-        imageUrl: '',
-        SKU: '',
-        validationErr: false
-      })
+      this.props.editBook(this.state)
+      this.setState({validationErr: false})
     }
+  }
+  componentDidMount() {
+    this.setState({...this.props.book})
   }
   render() {
     // const {name, description, price, quantity, imageUrl, SKU} = this.state
@@ -53,14 +48,18 @@ class AddBook extends Component {
         {...this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        action="Add"
+        action="Edit"
       />
     )
   }
 }
 
-const mapDispatch = dispatch => ({
-  addBook: book => dispatch(addBook(book))
+const mapState = state => ({
+  book: state.book.selectedBook[0]
 })
 
-export default connect(null, mapDispatch)(AddBook)
+const mapDispatch = dispatch => ({
+  editBook: book => dispatch(editBook(book))
+})
+
+export default connect(mapState, mapDispatch)(EditBook)
