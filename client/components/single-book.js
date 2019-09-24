@@ -40,12 +40,20 @@ class SingleBook extends Component {
             <h4>${price / 100}</h4>
             <div className="sp-btn">
               <button
+                type="button"
                 onClick={() => this.handleClick(book)}
                 className="button-checkout"
               >
                 Add to the cart
               </button>
             </div>
+            {user && user.role.editProduct ? (
+              <Link to={`/admin/books/${id}`}>
+                <button type="button">Edit Book</button>
+              </Link>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <Toasts />
