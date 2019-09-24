@@ -40,29 +40,35 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className="email-container">
-        <div>Password Change Form</div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="email-edit">
-            <label>Enter Current Email:</label>
-            <input
-              type="text"
-              name="oldEmail"
-              value={this.state.oldEmail}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="email-edit">
-            <label>Enter New Email:</label>
-            <input
-              type="text"
-              name="newEmail"
-              value={this.state.newEmail}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+      <div className="email">
+        <div className="email-container">
+          <div className="email_change">Email Change Form</div>
+          <form onSubmit={this.handleSubmit}>
+            <div className="email-edit">
+              <label>Enter Current Email:</label>
+              <input
+                type="text"
+                name="oldEmail"
+                value={this.state.oldEmail}
+                onChange={this.handleChange}
+                className="email-input"
+              />
+            </div>
+            <div className="email-edit">
+              <label>Enter New Email:</label>
+              <input
+                type="text"
+                name="newEmail"
+                value={this.state.newEmail}
+                onChange={this.handleChange}
+                className="email-input"
+              />
+            </div>
+            <button type="submit" className="login-btn">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     )
   }

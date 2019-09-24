@@ -24,9 +24,9 @@ class History extends React.Component {
 
       return (
         <div className="orderhistory">
-          <h1>OrderHistory</h1>
+          <h1 className="orders">Order History</h1>
           {Object.keys(orderList).map(key => (
-            <div key={key}>
+            <div key={key} className="single-order">
               <h3>Order #{key}</h3>
               {orderList[key].map(book => (
                 <div key={book.price} className="order-items">
