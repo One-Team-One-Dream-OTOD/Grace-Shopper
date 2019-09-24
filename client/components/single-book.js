@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getBook} from '../store/book'
+import {Link} from 'react-router-dom'
 import {addToCart} from '../store/order'
 import {addToast} from '../store/toast'
 import Toasts from './toasts'
@@ -22,8 +23,11 @@ class SingleBook extends Component {
   }
 
   render() {
-    const {name, description, imageUrl, price} = this.props.selectedBook[0]
+
+    const {id, name, description, imageUrl, price} = this.props.selectedBook[0]
+
     const book = this.props.selectedBook[0]
+    const {user} = this.props
 
     return (
       <React.Fragment>
@@ -53,7 +57,8 @@ class SingleBook extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedBook: state.book.selectedBook
+    selectedBook: state.book.selectedBook,
+    user: state.user
   }
 }
 

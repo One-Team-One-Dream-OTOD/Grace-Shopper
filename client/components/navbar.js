@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getCart} from '../store/order'
 
+
 const Navbar = ({handleClick, isLoggedIn, cartItems}) => {
   let cartBadge = 0
   cartItems.map(cart => {
@@ -66,7 +67,8 @@ const Navbar = ({handleClick, isLoggedIn, cartItems}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    cartItems: state.order.cart
+    cartItems: state.order.cart,
+    user: state.user
   }
 }
 
