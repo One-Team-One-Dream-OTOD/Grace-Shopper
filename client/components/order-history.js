@@ -14,6 +14,7 @@ class History extends React.Component {
       return <div className="orderhistory">No Previous Orders</div>
     } else {
       let orderList = {}
+
       this.props.history.forEach(element => {
         if (orderList[element.orderId]) {
           orderList[element.orderId].push(element)
@@ -21,6 +22,11 @@ class History extends React.Component {
           orderList[element.orderId] = [element]
         }
       })
+
+      // Object.keys(orderList).map(key => {
+      //   orderList[key]
+      // })
+      // let total = 0.0
 
       return (
         <div className="orderhistory">
@@ -37,9 +43,11 @@ class History extends React.Component {
                   <div>{book.book.name}</div>
                   <div>{book.quantity}</div>
                   <div>${book.price / 100}</div>
+                  {(total += book.price)}
                 </div>
               ))}
-              <div>Total Price: $</div>
+              <div>Total Price: ${total / 100}</div>
+              {(total = 0.0)}
             </div>
           ))}
         </div>
