@@ -23,10 +23,11 @@ class History extends React.Component {
         }
       })
 
-      // Object.keys(orderList).map(key => {
-      //   orderList[key]
-      // })
-      // let total = 0.0
+      let totals = {}
+      Object.keys(orderList).map(key => {
+        let total = orderList[key].reduce((acc, cv) => acc + cv.price, 0)
+        totals[key] = total
+      })
 
       return (
         <div className="orderhistory">
@@ -45,8 +46,7 @@ class History extends React.Component {
                   <div>${book.price / 100}</div>
                 </div>
               ))}
-              {/* <div>Total Price: ${total / 100}</div>
-              {(total = 0.0)} */}
+              <div>Total Price: ${totals[key] / 100}</div>
             </div>
           ))}
         </div>
