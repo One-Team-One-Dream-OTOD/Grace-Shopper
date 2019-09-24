@@ -22,7 +22,7 @@ const DisplayCart = props => {
             >
               <i className="fas fa-minus" />
             </button>
-            <h6> Quantity: {quantity} </h6>
+            <h6 className="quantity"> Quantity: {quantity} </h6>
             <button
               className="quantity-btn"
               type="button"

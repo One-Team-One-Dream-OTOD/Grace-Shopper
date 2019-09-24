@@ -11,6 +11,7 @@ class SingleBook extends Component {
   }
 
   render() {
+
     const {id, name, description, imageUrl, price} = this.props.selectedBook[0]
 
     const book = this.props.selectedBook[0]
