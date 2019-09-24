@@ -43,11 +43,10 @@ class History extends React.Component {
                   <div>{book.book.name}</div>
                   <div>{book.quantity}</div>
                   <div>${book.price / 100}</div>
-                  {(total += book.price)}
                 </div>
               ))}
-              <div>Total Price: ${total / 100}</div>
-              {(total = 0.0)}
+              {/* <div>Total Price: ${total / 100}</div>
+              {(total = 0.0)} */}
             </div>
           ))}
         </div>
