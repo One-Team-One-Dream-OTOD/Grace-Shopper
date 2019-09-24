@@ -21,7 +21,6 @@ class Checkout extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>Checkout Here!</h3>
         <StripeProvider apiKey="pk_test_kkhT2zreOIZa5EjrJcaCp5Qs0050elhvm0">
           <div className="example">
             <Elements>

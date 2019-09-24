@@ -11,6 +11,7 @@ class SingleBook extends Component {
   }
 
   render() {
+
     const {
       id,
       name,
@@ -31,9 +32,14 @@ class SingleBook extends Component {
           <h1>{name}</h1>
           <p>{description}</p>
           <h4>${price / 100}</h4>
-          <button onClick={() => this.props.addToCart(book)}>
-            Add to the cart
-          </button>
+          <div className="sp-btn">
+            <button
+              onClick={() => this.props.addToCart(book)}
+              className="button-checkout"
+            >
+              Add to the cart
+            </button>
+          </div>
         </div>
         {user && user.role.editProduct ? (
           <Link to={`/admin/books/${id}`}>
