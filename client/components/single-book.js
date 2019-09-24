@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getBook} from '../store/book'
+import {Link} from 'react-router-dom'
+import {addToCart} from '../store/order'
 
 class SingleBook extends Component {
   componentDidMount() {
@@ -9,7 +11,11 @@ class SingleBook extends Component {
   }
 
   render() {
-    const {name, description, imageUrl, price} = this.props.selectedBook[0]
+
+    const {id, name, description, imageUrl, price} = this.props.selectedBook[0]
+
+    const book = this.props.selectedBook[0]
+    const {user} = this.props
 
     return (
       <div className="singleBook">
@@ -20,7 +26,23 @@ class SingleBook extends Component {
           <h1>{name}</h1>
           <p>{description}</p>
           <h4>${price / 100}</h4>
+          <div className="sp-btn">
+            <button
+              type="button"
+              onClick={() => this.props.addToCart(book)}
+              className="button-checkout"
+            >
+              Add to the cart
+            </button>
+          </div>
         </div>
+        {user && user.role.editProduct ? (
+          <Link to={`/admin/books/${id}`}>
+            <button type="button">Edit Book</button>
+          </Link>
+        ) : (
+          ''
+        )}
       </div>
     )
   }
@@ -28,13 +50,15 @@ class SingleBook extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedBook: state.book.selectedBook
+    selectedBook: state.book.selectedBook,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBook: bookId => dispatch(getBook(bookId))
+    getBook: bookId => dispatch(getBook(bookId)),
+    addToCart: book => dispatch(addToCart(book))
   }
 }
 

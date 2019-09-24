@@ -11,20 +11,25 @@ class AllBooks extends Component {
 
   render() {
     const books = this.props.books
+    const user = this.props.user
+    console.log('got here', user && user.role.addProduct)
     return (
       <React.Fragment>
         <div className="allProducts">
           {books.map(book => (
             <div key={book.id} className="single_book">
-              <h4 className="top">
-                <Link to={`/books/${book.id}`}>{book.name}</Link>
-              </h4>
-              <div className="mid">
-                <img src={book.imageUrl} className="book_img" />
-              </div>
+              <Link to={`/books/${book.id}`}>
+                <div className="top">{book.name}</div>
+                <div className="mid">
+                  <img src={book.imageUrl} className="book_img" />
+                </div>
+              </Link>
               <div className="bot">
                 <div>${book.price / 100}</div>
-                <button onClick={() => this.props.addToCart(book)}>
+                <button
+                  type="button"
+                  onClick={() => this.props.addToCart(book)}
+                >
                   ADD TO CART
                 </button>
               </div>
@@ -38,7 +43,8 @@ class AllBooks extends Component {
 
 const mapStateToProps = state => {
   return {
-    books: state.book.books
+    books: state.book.books,
+    user: state.user
   }
 }
 

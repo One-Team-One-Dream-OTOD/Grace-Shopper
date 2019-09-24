@@ -73,6 +73,8 @@ button {
   height: 80px;
   width: 100%;
   padding: 10px;
+  position: fixed;
+  z-index: 2;
 }
 
 .allProducts {
@@ -80,6 +82,8 @@ button {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  position: relative;
+  top: 40px;
 }
 
 .book_img {
@@ -127,19 +131,25 @@ button {
   color: transparent;
   text-shadow: 0px 3px 0px #b2a98f, 0px 10px 8px rgba(0, 0, 0, 0.15),
     0px 15px 2px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(129, 126, 126, 0.1);
+  position: relative;
+  top: 50px;
+  z-index: 1;
 }
 
 .singleBook {
   display: flex;
   flex-direction: row;
-  margin: 15px 20px 15px 0;
+  /* margin: 15px 20px 15px 0; */
   padding: 45px;
+  position: relative;
+  top: 90px;
 }
 
 .single_book_left {
   display: flex;
   margin-right: 5px;
   flex-direction: column;
+  z-index: 1;
 }
 
 .single_book_right {
@@ -150,8 +160,16 @@ button {
   padding: 30px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 
-  z-index: -1;
+.edit_book_right {
+  display: flex;
+  border-radius: 10px;
+  margin-left: -25px;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .login_form {
@@ -179,6 +197,8 @@ button {
 .form-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  top: 100px;
 }
 
 .cart-full-list {
@@ -214,13 +234,16 @@ button {
   justify-content: center;
   align-items: center;
 }
-
+.delete-btn {
+  margin-left: 192px;
+  margin-top: 22px;
+}
 .cart-item-qty h6 {
   margin: 5px;
 }
 
 .cart-item-details > h6 {
-  margin: 20px;
+  margin: 10px;
 }
 
 .cart-item-details {
@@ -234,6 +257,7 @@ button {
   background: rgb(125, 131, 214);
   border-radius: 10px;
   margin-left: 20px;
+  margin-top: 65px;
 }
 
 .button-checkout:hover {
@@ -244,6 +268,7 @@ button {
 .checkout-row {
   display: flex;
   justify-content: center;
+  padding-top: 10%;
 }
 
 .checkout-full {
@@ -252,12 +277,19 @@ button {
   border-radius: 5px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  top: 20%;
 }
 
 .checkout-thank-you {
   display: flex;
   justify-content: center;
-  padding: 100px;
+  padding: 80px;
+
+  color: #7a7563;
+  text-shadow: 0px 3px 0px #b2a98f, 0px 10px 8px rgba(0, 0, 0, 0.15),
+    0px 15px 2px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(129, 126, 126, 0.1);
+  margin: 0;
 }
 
 .mid {
@@ -269,7 +301,8 @@ button {
 }
 
 .bot {
-  height: 10%;
+  height: 20%;
+  padding-top: 60px;
 }
 
 .priceAndDell {
@@ -291,6 +324,7 @@ button {
   -moz-background-clip: text;
   background-clip: text;
   color: transparent;
+  margin: 80px;
 }
 
 .email-input {
@@ -336,4 +370,34 @@ button {
 small {
   font-size: larger;
   color: #7a7563;
+}
+
+.top-wrap {
+  position: relative;
+  top: 40px;
+}
+
+.checkOut-form {
+  position: absolute;
+}
+
+.sp-btn {
+  width: 50%;
+}
+.max {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  margin-left: 22%;
+}
+
+.quantity {
+  margin: 5px;
+}
+
+.warning {
+  color: red;
 }
