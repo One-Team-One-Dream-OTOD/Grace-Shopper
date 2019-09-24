@@ -7,9 +7,10 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="password-container">
-        <img src="pngguru.com-id-butue.png" alt="" />
-        <div>Old Password</div>
-        <div>New Password</div>
+        <div className="change-pass">
+          <div>Old Password</div>
+          <div>New Password</div>
+        </div>
       </div>
     )
   }
