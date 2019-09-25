@@ -1,21 +1,24 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const isAuthorized = require('../auth/isAuthorized')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  // comment out for now until we use for admin page and have security in place
-  try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email']
-    })
-    res.json(users)
-  } catch (err) {
-    next(err)
+  if (req.user && isAuthorized(req.user, 'editUser')) {
+    try {
+      const users = await User.findAll({
+        // explicitly select only the id and email fields - even though
+        // users' passwords are encrypted, it won't help if we just
+        // send everything to anyone who asks!
+        attributes: ['id', 'email']
+      })
+      res.json(users)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.status(401).json()
   }
-  res.json()
 })
 
 router.put('/:id', async (req, res, next) => {
