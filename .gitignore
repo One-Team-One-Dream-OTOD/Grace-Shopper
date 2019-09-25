@@ -1,5 +1,6 @@
 node_modules
 public/bundle.js
+script/admin.js
 public/bundle.js.map
 secrets.js
 .DS_Store
