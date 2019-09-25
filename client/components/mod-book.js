@@ -17,11 +17,8 @@ export default function ModBook(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="singleBook">
-        <div className="single_book_left">
-          <img src="" />
-        </div>
-        <div className="edit_book_right">
+      <div className="singleBook-add">
+        <div className="edit_book_right-adm">
           <label htmlFor="name">
             Name:
             {name.length === 0 && validationErr ? (
@@ -84,7 +81,11 @@ export default function ModBook(props) {
             value={imageUrl}
             onChange={handleChange}
           />
-          <input type="submit" value={`${action} Book`} />
+          <input
+            type="submit"
+            value={`${action} Book`}
+            className="admin-edit"
+          />
         </div>
       </div>
     </form>
