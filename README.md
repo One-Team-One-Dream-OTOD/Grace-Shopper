@@ -31,6 +31,8 @@ Rainforest’s back-end consist primarily of Express.js, Sequelize, and PostgreS
 * Express.js
 * Sequelize
 * Stripe API
+* Google O-Auth
+* Heroku/Travis-CI
 
 
 ## :writing_hand: Authors
