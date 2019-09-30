@@ -37,7 +37,7 @@ Rainforest’s back-end consist primarily of Express.js, Sequelize, and PostgreS
 
 ## :writing_hand: Authors
 
-* Jared - [Jeffg5001](https://github.com/Jeffg5001)
+* Jared Schwantz - [jschwantz](https://github.com/jschwantz)
 * Andrew O’Grady - [aogrady3](https://github.com/aogrady3)
 * Maksym Fedorenko - [Maksym16](http://github.com/Maksym16)
 * Tony Wong - [wongtonyb](https://github.com/wongtonyb)
