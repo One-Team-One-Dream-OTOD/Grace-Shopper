@@ -83,7 +83,7 @@ button {
   flex-direction: row;
   justify-content: center;
   position: relative;
-  top: 40px;
+  top: 15px;
 }
 
 .book_img {
@@ -548,4 +548,39 @@ small {
   position: fixed;
   right: 24px;
   width: 300px;
+}
+
+.addProduct-btn {
+  margin-top: 46px;
+}
+
+.admin-add {
+  font-size: 17px;
+  color: white;
+  background: rgb(125, 131, 214);
+  margin-left: 15px;
+  border-radius: 5px;
+}
+
+.admin-edit {
+  font-size: 17px;
+  color: white;
+  background: rgb(125, 131, 214);
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.edit_book_right-adm {
+  display: flex;
+  border-radius: 10px;
+  margin-top: 130px;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.name-adm-book {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

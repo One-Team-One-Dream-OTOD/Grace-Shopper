@@ -16,10 +16,12 @@ export const UserHome = props => {
       <div className="hello">
         <h3>Welcome, {email ? email : 'Guest'}</h3>
       </div>
-      <div className="addProduct">
+      <div className="addProduct-btn">
         {user && user.role.addProduct ? (
           <Link to="/admin/books/add">
-            <button type="button">Add Book</button>
+            <button type="button" className="admin-add">
+              Add Book
+            </button>
           </Link>
         ) : (
           ''
